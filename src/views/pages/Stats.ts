@@ -3,7 +3,7 @@ import { IPage } from '../../helpers/interfaces';
 const Stats: IPage = {
   render: async () => {
     const view = `
-            <section class="section">
+            <section class="section stats">
                 <h1>Страница статистики</h1>
             </section>
           `;

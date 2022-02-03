@@ -15,7 +15,7 @@ import Utils from './services/Utils';
 
 // List of supported routes. Any url other than these routes will throw a 404 error
 const routes: IRouter = {
-  '/home': Home,
+  '/': Home,
   '/book': Book,
   '/audiocall': AudioCall,
   '/sprint': Sprint,

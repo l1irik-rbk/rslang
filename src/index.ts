@@ -1,4 +1,5 @@
-import { router } from './routing/app';
+import { router } from './app';
+import './bootstrap/bootstrap.min.css';
 
 // Listen on hash change:
 window.addEventListener('hashchange', router);

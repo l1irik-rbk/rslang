@@ -1,4 +1,4 @@
-import { IPage } from '../../helpers/interfaces';
+import { IPage } from './../../helpers/interfaces';
 const Book: IPage = {
   render: async () => {
     const view = `
