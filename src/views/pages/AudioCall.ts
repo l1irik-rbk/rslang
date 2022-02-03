@@ -1,6 +1,6 @@
-import { IPage } from '../../helpers/interfaces';
+import { IComponent } from '../../helpers/interfaces';
 
-const AudioCall: IPage = {
+const AudioCall: IComponent = {
   render: async () => {
     const view = `
             <section class="section">

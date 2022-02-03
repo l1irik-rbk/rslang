@@ -1,5 +1,5 @@
-import { IPage } from './../../helpers/interfaces';
-const Book: IPage = {
+import { IComponent } from './../../helpers/interfaces';
+const Book: IComponent = {
   render: async () => {
     const view = `
             <section class="section">

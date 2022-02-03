@@ -1,6 +1,6 @@
-import { IPage } from './../../helpers/interfaces';
+import { IComponent } from './../../helpers/interfaces';
 
-const Bottombar: IPage = {
+const Bottombar: IComponent = {
   render: async () => {
     const view = `
         <footer class="footer">

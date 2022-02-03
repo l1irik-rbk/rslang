@@ -1,4 +1,5 @@
 import { IRequest } from './../helpers/interfaces';
+
 const Utils = {
   //  Parse a url and break it into resource, id and verb
   parseRequestURL: (): IRequest => {

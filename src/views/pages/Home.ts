@@ -1,6 +1,6 @@
-import { IPage } from './../../helpers/interfaces';
+import { IComponent } from './../../helpers/interfaces';
 
-const Home: IPage = {
+const Home: IComponent = {
   render: async () => {
     const view = `
             <section class="section">

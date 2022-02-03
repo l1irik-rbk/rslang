@@ -1,6 +1,6 @@
-import { IPage } from './../../helpers/interfaces';
+import { IComponent } from './../../helpers/interfaces';
 
-const Error404: IPage = {
+const Error404: IComponent = {
   render: async () => {
     const view = `
             <section class="section">

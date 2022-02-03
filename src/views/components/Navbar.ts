@@ -1,6 +1,6 @@
-import { IPage } from './../../helpers/interfaces';
+import { IComponent } from './../../helpers/interfaces';
 
-const Navbar: IPage = {
+const Navbar: IComponent = {
   render: async () => {
     const view = `
       <nav class="p-3 bg-dark text-white">
