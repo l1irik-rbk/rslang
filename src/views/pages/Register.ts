@@ -28,12 +28,12 @@ const Register: IComponent = {
   after_render: async () => {
     const userNameField = document.getElementById('name') as HTMLInputElement;
     const emailField = document.getElementById('email') as HTMLInputElement;
-    const passwordField= document.getElementById('password') as HTMLInputElement;
+    const passwordField = document.getElementById('password') as HTMLInputElement;
     const submitButton = document.getElementById('submit') as HTMLButtonElement;
     const alertContainer = document.getElementById('alert') as HTMLElement;
 
     (document.getElementById('form') as HTMLFormElement).onsubmit = () => {
-      return false
+      return false;
     };
 
     submitButton.onclick = async () => {
