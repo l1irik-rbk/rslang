@@ -2,13 +2,13 @@ import { IRouter } from './helpers/interfaces';
 import Home from './views/pages/Home';
 import Error404 from './views/pages/Error404';
 import Register from './views/pages/Register';
-import LogIn from './views/pages/LogIn';
+import { LogIn } from './views/pages/LogIn';
 import Book from './views/pages/Book';
 import AudioCall from './views/pages/AudioCall';
 import Sprint from './views/pages/Sprint';
 import Stats from './views/pages/Stats';
 
-import Navbar from './views/components/Navbar';
+import Navbar from './views/components/navbar/Navbar';
 import Bottombar from './views/components/Bottombar';
 
 import Utils from './services/Utils';
