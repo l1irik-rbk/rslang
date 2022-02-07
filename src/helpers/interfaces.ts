@@ -10,3 +10,19 @@ export interface IComponent {
 export interface IRouter {
   [key: string]: IComponent;
 }
+
+export interface INavbar extends IComponent {
+  setLoginState: () => void;
+  setLogoutState: () => void;
+}
+
+export interface IUser {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface ICredentials {
+  email: string;
+  password: string;
+}

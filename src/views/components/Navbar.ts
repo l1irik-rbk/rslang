@@ -1,6 +1,9 @@
-import { IComponent } from './../../helpers/interfaces';
+import { authState } from '../pages/LogIn';
+import { INavbar } from './../../helpers/interfaces';
 
-const Navbar: IComponent = {
+let loginStateElement: null | HTMLElement;
+
+const Navbar: INavbar = {
   render: async () => {
     const view = `
       <nav class="p-3 bg-dark text-white">
@@ -13,10 +16,8 @@ const Navbar: IComponent = {
               <li><a href="/#/sprint" class="nav-link px-2 text-white">Sprint</a></li>
               <li><a href="/#/stats" class="nav-link px-2 text-white">Stats</a></li>
             </ul>
-
             <div class="text-end">
-              <a  class="btn btn-outline-light me-2" href="/#/login">Login</a>
-              <a class="btn btn-warning" href="/#/register">Sign-up</a>
+              <a  class="btn btn-outline-light me-2" href="/#/login" id="login-state"></a>
             </div>
           </div>
         </div>
@@ -25,7 +26,17 @@ const Navbar: IComponent = {
 
     return view;
   },
-  after_render: async () => {},
+  after_render: async () => {
+    loginStateElement = document.getElementById('login-state');
+    if (!loginStateElement) return;
+    loginStateElement.innerText = authState.isAuthenticated ? 'Logout' : 'Login';
+  },
+  setLoginState: () => {
+    if (loginStateElement) loginStateElement.innerText = 'Login';
+  },
+  setLogoutState: () => {
+    if (loginStateElement) loginStateElement.innerText = 'Logout';
+  },
 };
 
 export default Navbar;
