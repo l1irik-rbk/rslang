@@ -5,7 +5,7 @@ import { EmailField } from '../components/auth/EmailField';
 import { PasswordField } from '../components/auth/PasswordField';
 import { SubmitButton } from '../components/auth/SubmitButton';
 import { Link } from '../components/auth/Link';
-import Navbar from '../components/navbar/Navbar';
+import Navbar from '../components/Navbar';
 
 const authState = {
   isAuthenticated: false,

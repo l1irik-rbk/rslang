@@ -1,5 +1,5 @@
 import { API_URL } from './config';
-import { IUser } from './IUser';
+import { IUser } from './../helpers/interfaces';
 
 const usersRoute = `${API_URL}/users`;
 

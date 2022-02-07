@@ -1,5 +1,5 @@
 import { API_URL } from './config';
-import { ICredentials } from './ICredentials';
+import { ICredentials } from './../helpers/interfaces';
 
 const signinRoute = `${API_URL}/signin`;
 

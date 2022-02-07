@@ -8,7 +8,7 @@ import AudioCall from './views/pages/AudioCall';
 import Sprint from './views/pages/Sprint';
 import Stats from './views/pages/Stats';
 
-import Navbar from './views/components/navbar/Navbar';
+import Navbar from './views/components/Navbar';
 import Bottombar from './views/components/Bottombar';
 
 import Utils from './services/Utils';

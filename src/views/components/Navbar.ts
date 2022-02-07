@@ -1,5 +1,5 @@
-import { authState } from '../../pages/LogIn';
-import { INavbar } from './INavbar';
+import { authState } from '../pages/LogIn';
+import { INavbar } from './../../helpers/interfaces';
 
 let loginStateElement: null | HTMLElement;
 
