@@ -26,3 +26,11 @@ export interface ICredentials {
   email: string;
   password: string;
 }
+
+export interface ICard {
+  [key: string]: string;
+}
+
+export interface ICardState {
+  [key: string]: ICard;
+}
