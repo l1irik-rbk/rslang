@@ -1,5 +1,5 @@
 export interface IRequest {
-  resource: null | string;
+  [key: string]: null | string;
 }
 
 export interface IComponent {
@@ -33,4 +33,21 @@ export interface ICard {
 
 export interface ICardState {
   [key: string]: ICard;
+}
+
+export interface IWord {
+  id: string;
+  group: number;
+  page: number;
+  word: string;
+  image: string;
+  audio: string;
+  audioMeaning: string;
+  audioExample: string;
+  textMeaning: string;
+  textExample: string;
+  transcription: string;
+  wordTranslate: string;
+  textMeaningTranslate: string;
+  textExampleTranslate: string;
 }

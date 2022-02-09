@@ -1,5 +1,5 @@
 import { CARD_STATE } from '../../helpers/constants';
-import { renderCards } from '../components/textbook/card';
+import { renderCards } from '../components/textbook/Card';
 import { IComponent } from './../../helpers/interfaces';
 import { authState } from './LogIn';
 

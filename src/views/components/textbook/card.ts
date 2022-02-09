@@ -1,4 +1,4 @@
-import { ICard } from './../../../helpers/interfaces';
+import { ICard } from '../../../helpers/interfaces';
 
 export const renderCards = ({ title, text }: ICard) => `
   <div class="col">
