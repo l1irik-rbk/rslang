@@ -27,12 +27,8 @@ export interface ICredentials {
   password: string;
 }
 
-export interface ICard {
+export interface IBtnText {
   [key: string]: string;
-}
-
-export interface ICardState {
-  [key: string]: ICard;
 }
 
 export interface IWord {
@@ -50,4 +46,10 @@ export interface IWord {
   wordTranslate: string;
   textMeaningTranslate: string;
   textExampleTranslate: string;
+}
+
+export interface IWordlistStore {
+  textbookPage: number;
+  textbookGroup: number;
+  isPlaying: HTMLAudioElement;
 }
