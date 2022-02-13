@@ -1,6 +1,7 @@
+import { MIN_GROUP, MIN_PAGE } from '../../../helpers/constants';
 import { IWordlistStore } from './../../../helpers/interfaces';
 
 export default {
-  textbookPage: 0,
-  textbookGroup: 0,
+  textbookPage: MIN_PAGE,
+  textbookGroup: MIN_GROUP,
 } as IWordlistStore;

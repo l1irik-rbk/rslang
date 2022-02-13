@@ -1,4 +1,4 @@
-import { TEXTBOOK_BTNS_TEXT } from '../../../helpers/constants';
+import { MAX_GROUP, TEXTBOOK_BTNS_TEXT } from '../../../helpers/constants';
 import { authState } from '../../pages/LogIn';
 
 export const renderBtns = (textbookGroup: number): string =>
@@ -8,7 +8,7 @@ export const renderBtns = (textbookGroup: number): string =>
 
 const getBtn = (text: string, id: number, textbookGroup: number): string => {
   const activeClass = id === textbookGroup ? 'active' : '';
-  if (id !== 6 && !authState.isAuthenticated) {
+  if (id !== MAX_GROUP && !authState.isAuthenticated) {
     return `<button id="${id}" type="button" class="btn btn-outline-primary ${activeClass}">${text}</button>`;
   } else if (authState.isAuthenticated) {
     return `<button id="${id}" type="button" class="btn btn-outline-primary ${activeClass}">${text}</button>`;
