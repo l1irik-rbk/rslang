@@ -9,6 +9,8 @@ import Navbar from '../components/Navbar';
 
 const authState = {
   isAuthenticated: false,
+  userId: '',
+  token: '',
 };
 
 const LogIn: IComponent = {
@@ -50,6 +52,8 @@ const LogIn: IComponent = {
         const result = await signInUser(credentials);
         if (result.message === 'Authenticated') {
           localStorage.setItem('authResults', JSON.stringify(result));
+          authState.token = result.token;
+          authState.userId = result.userId;
           authState.isAuthenticated = true;
           Navbar.setLogoutState();
           location.hash = '/';

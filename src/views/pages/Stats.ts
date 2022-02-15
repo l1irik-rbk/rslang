@@ -3,7 +3,7 @@ import { IComponent } from '../../helpers/interfaces';
 const Stats: IComponent = {
   render: async () => {
     const view = `
-            <section class="section stats">
+            <section class="section">
                 <h1>Страница статистики</h1>
             </section>
           `;

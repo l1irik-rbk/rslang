@@ -3,20 +3,21 @@ import Home from './views/pages/Home';
 import Error404 from './views/pages/Error404';
 import Register from './views/pages/Register';
 import { LogIn } from './views/pages/LogIn';
-import Book from './views/pages/Book';
 import AudioCall from './views/pages/AudioCall';
 import Sprint from './views/pages/Sprint';
 import Stats from './views/pages/Stats';
+import Textbook from './views/pages/Textbook';
 
 import Navbar from './views/components/Navbar';
 import Bottombar from './views/components/Bottombar';
 
 import Utils from './services/Utils';
+import { getPageAndGroup } from './views/components/textbook/savePages';
 
 // List of supported routes. Any url other than these routes will throw a 404 error
-const routes: IRouter = {
+export const routes: IRouter = {
   '/': Home,
-  '/book': Book,
+  '/textbook': Textbook,
   '/audiocall': AudioCall,
   '/sprint': Sprint,
   '/stats': Stats,
@@ -38,7 +39,7 @@ export const router = async () => {
     footer.innerHTML = await Bottombar.render();
     await Bottombar.after_render();
   }
-
+  await getPageAndGroup();
   // Get the parsed URl from the addressbar
   const request = Utils.parseRequestURL();
 

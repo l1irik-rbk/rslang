@@ -1,5 +1,5 @@
 export interface IRequest {
-  resource: null | string;
+  [key: string]: null | string;
 }
 
 export interface IComponent {
@@ -26,6 +26,49 @@ export interface ICredentials {
   email: string;
   password: string;
 }
+
+export interface IBtnText {
+  [key: string]: string;
+}
+
+export interface IWordlistStore {
+  textbookPage: number;
+  textbookGroup: number;
+  isPlaying: HTMLAudioElement;
+}
+
+export interface IUserWord {
+  id: string;
+  wordId: string;
+  word?: INewWord;
+}
+
+interface INewWord {
+  difficulty: string;
+  optional: IOptional;
+}
+
+interface IOptional {
+  [key: string]: boolean;
+}
+
+export interface IGetUserWords extends IUserWord {
+  difficulty: string;
+  optional: IOptional;
+}
+
+export interface IAggregated {
+  paginatedResults: IAggregatedWord[];
+  totalCount: ICount[];
+}
+
+interface ICount {
+  count: number;
+}
+
+export interface IAggregatedWord extends IWord {
+  _id: string;
+  userWord: INewWord;
 
 export interface IWord {
   audio: string;
