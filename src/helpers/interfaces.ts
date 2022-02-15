@@ -31,23 +31,6 @@ export interface IBtnText {
   [key: string]: string;
 }
 
-export interface IWord {
-  id: string;
-  group: number;
-  page: number;
-  word: string;
-  image: string;
-  audio: string;
-  audioMeaning: string;
-  audioExample: string;
-  textMeaning: string;
-  textExample: string;
-  transcription: string;
-  wordTranslate: string;
-  textMeaningTranslate: string;
-  textExampleTranslate: string;
-}
-
 export interface IWordlistStore {
   textbookPage: number;
   textbookGroup: number;
@@ -86,4 +69,26 @@ interface ICount {
 export interface IAggregatedWord extends IWord {
   _id: string;
   userWord: INewWord;
+
+export interface IWord {
+  audio: string;
+  audioExample: string;
+  audioMeaning: string;
+  group: number;
+  id: string;
+  image: string;
+  page: number;
+  textExample: string;
+  textExampleTranslate: string;
+  textMeaning: string;
+  textMeaningTranslate: string;
+  transcription: string;
+  word: string;
+  wordTranslate: string;
+}
+
+export interface ISprintPair extends IWord {
+  testedAnswer: string;
+  isTruePair: boolean;
+  userAnswer: boolean;
 }
