@@ -43,13 +43,13 @@ export interface IUserWord {
   word?: INewWord;
 }
 
-interface INewWord {
+export interface INewWord {
   difficulty: string;
   optional: IOptional;
 }
 
 interface IOptional {
-  [key: string]: boolean;
+  [key: string]: boolean | number;
 }
 
 export interface IGetUserWords extends IUserWord {
@@ -69,6 +69,7 @@ interface ICount {
 export interface IAggregatedWord extends IWord {
   _id: string;
   userWord: INewWord;
+}
 
 export interface IWord {
   audio: string;

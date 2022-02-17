@@ -11,14 +11,14 @@ export const renderWords = async (group: number, page: number) => {
   const words: IAggregatedWord[] =
     group !== MAX_GROUP
       ? await getWords(group, page)
-      : (await getAggregatedWords(authState.userId, page))[0].paginatedResults;
+      : (await getAggregatedWords(authState.userId))[0].paginatedResults;
   return words.map((word) => getWordCard(word)).join('');
 };
 
 export const getWordCard = (word: IAggregatedWord) => {
   const id: string = WordlistStore.textbookGroup !== 6 ? word.id : word._id;
   const html = `
-    <div id="col-${id}" class="col card-wrapper">
+    <div id="col-${id}" class="col card-wrapper border-danger">
       <div class="card shadow-sm h-100">
         <img src="${API_URL}/${word.image}" alt="image" width="100%" height="240">
         <div class="card-body">
