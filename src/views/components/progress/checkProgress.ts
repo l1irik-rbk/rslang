@@ -9,17 +9,6 @@ export const checkUsedWords = async () => {
   const cards = document.querySelectorAll('.card-group') as NodeListOf<HTMLElement>;
 
   changeMessage(userWords, cards);
-  // cards.forEach((card) => {
-  //   const cardID = card.id.split('-')[1];
-  //   userWords.find((word) => {
-  //     if (
-  //       word.wordId === cardID &&
-  //       (word.optional.correctAnswersInARow || word.optional.rightAnswers || word.optional.wrongAnswers)
-  //     ) {
-  //       (card.querySelector('.word-progress') as HTMLElement).innerHTML = renderProgress(word.wordId);
-  //     }
-  //   });
-  // });
 
   const correctAnswers = document.querySelectorAll('.correct-answers') as NodeListOf<HTMLElement>;
   const wrongAnswers = document.querySelectorAll('.wrong-answers') as NodeListOf<HTMLElement>;
