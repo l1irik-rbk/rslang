@@ -37,7 +37,7 @@ export class GameStart {
   }
 
   async createWordList() {
-    const PAGE_NUMBERS = 0;
+    const PAGE_NUMBERS = 29;
     const TRUE_FRACTION = 0.4;
     const res = !WordlistStore.startedFromBook
       ? await getWords(this.parent.level, Math.round(Math.random() * PAGE_NUMBERS))
