@@ -25,7 +25,9 @@ export const checkPage = async () => {
 
   cards.forEach((card) => {
     const cardID = card.id.split('-')[1];
-    userWords.find((word) => (word.wordId === cardID ? counter++ : ''));
+    userWords.find((word) =>
+      word.wordId === cardID && (word.optional.isDiff || word.optional.wasStudied) ? counter++ : ''
+    );
   });
 
   if (counter === MAX_CARDS_ON_PAGE) addStyles(true);
