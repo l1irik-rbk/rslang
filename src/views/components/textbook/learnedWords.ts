@@ -3,9 +3,12 @@ import { INewWord, IGetUserWords, IUserWord } from './../../../helpers/interface
 import { getUserWord } from './diffStudyBtns';
 import { getUserWordAPI, updateUserWord } from '../../../api/UserWords.api';
 import { authState } from '../../pages/LogIn';
+import WordlistStore from './WordlistStore';
 
 export async function addCorretAnswer(this: WordCards, res: boolean) {
-  const wordID = this.parent.wordList[this.currWordIndex].id;
+  const wordID = !WordlistStore.startedFromBook
+    ? this.parent.wordList[this.currWordIndex].id
+    : (this.parent.wordList[this.currWordIndex]._id as string);
   const userWord: IGetUserWords = await getUserWordAPI(authState.userId, wordID);
 
   if (res) {

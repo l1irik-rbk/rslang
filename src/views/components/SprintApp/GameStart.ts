@@ -3,6 +3,9 @@ import { SprintApp } from './SprintApp';
 import { LevelSelector } from './LevelSelector';
 import { getWords } from '../../../api/sprint.api';
 import { IWord } from '../../../helpers/interfaces';
+import { authState } from '../../pages/LogIn';
+import WordlistStore from '../../components/textbook/WordlistStore';
+import { getWordsWithoutStudied } from '../../../api/userAggregatedWords';
 
 export class GameStart {
   onMain: () => void;
@@ -36,7 +39,9 @@ export class GameStart {
   async createWordList() {
     const PAGE_NUMBERS = 0;
     const TRUE_FRACTION = 0.4;
-    const res = await getWords(this.parent.level, Math.round(Math.random() * PAGE_NUMBERS));
+    const res = !WordlistStore.startedFromBook
+      ? await getWords(this.parent.level, Math.round(Math.random() * PAGE_NUMBERS))
+      : await getWordsWithoutStudied(authState.userId, this.parent.level, WordlistStore.textbookPage);
     const wordNumbers = res.length;
     this.parent.wordList = res.map((item: IWord) => {
       if (Math.random() <= TRUE_FRACTION) {

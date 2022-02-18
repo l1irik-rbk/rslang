@@ -4,4 +4,5 @@ import { IWordlistStore } from './../../../helpers/interfaces';
 export default {
   textbookPage: MIN_PAGE,
   textbookGroup: MIN_GROUP,
+  startedFromBook: false,
 } as IWordlistStore;

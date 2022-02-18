@@ -1,4 +1,5 @@
 import { IComponent } from '../../helpers/interfaces';
+import WordlistStore from '../components/textbook/WordlistStore';
 
 const Stats: IComponent = {
   render: async () => {
@@ -9,7 +10,9 @@ const Stats: IComponent = {
           `;
     return view;
   },
-  after_render: async () => {},
+  after_render: async () => {
+    WordlistStore.startedFromBook = false;
+  },
 };
 
 export default Stats;

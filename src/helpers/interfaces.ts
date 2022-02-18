@@ -35,6 +35,7 @@ export interface IWordlistStore {
   textbookPage: number;
   textbookGroup: number;
   isPlaying: HTMLAudioElement;
+  startedFromBook: boolean;
 }
 
 export interface IUserWord {
@@ -77,6 +78,7 @@ export interface IWord {
   audioMeaning: string;
   group: number;
   id: string;
+  _id?: string;
   image: string;
   page: number;
   textExample: string;
