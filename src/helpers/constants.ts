@@ -20,6 +20,11 @@ export const classes = {
   studyBtns: ['btn-success', 'text-light'],
 };
 
+export const firstPartID = {
+  difficultBtn: 'diff',
+  studyBtns: 'std',
+};
+
 export const ERROR_RATE = 1;
 export const MAX_GROUP = 6;
 export const MAX_PAGE = 29;

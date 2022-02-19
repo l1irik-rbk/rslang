@@ -6,6 +6,7 @@ import { EmailField } from '../components/auth/EmailField';
 import { PasswordField } from '../components/auth/PasswordField';
 import { SubmitButton } from '../components/auth/SubmitButton';
 import { Link } from '../components/auth/Link';
+import WordlistStore from '../components/textbook/WordlistStore';
 
 const Register: IComponent = {
   render: async () => {
@@ -26,6 +27,7 @@ const Register: IComponent = {
   },
 
   after_render: async () => {
+    WordlistStore.startedFromBook = false;
     const userNameField = document.getElementById('name') as HTMLInputElement;
     const emailField = document.getElementById('email') as HTMLInputElement;
     const passwordField = document.getElementById('password') as HTMLInputElement;
