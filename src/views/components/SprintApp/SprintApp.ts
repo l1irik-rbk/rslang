@@ -18,7 +18,7 @@ export class SprintApp {
     this.startedFromBook = startedFromBook;
     this.wordsGroup = wordsGroup;
     this.wordsPage = wordsPage;
-    this.level = 1;
+    this.level = 0;
     this.wordList = [];
     this.rightAnswerQueueMax = 0;
     this.totalPoints = 0;

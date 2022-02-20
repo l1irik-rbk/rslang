@@ -23,6 +23,7 @@ export class GameStart {
     const levelSelector = LevelSelector(parent.container);
     levelSelector.onchange = (e) => {
       parent.level = Number((e.target as HTMLInputElement).value);
+      console.log(parent.level);
     };
 
     const startButton = createDomNode(parent.container, 'button', 'Start', 'btn', 'btn-primary') as HTMLButtonElement;
