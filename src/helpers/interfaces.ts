@@ -95,3 +95,34 @@ export interface ISprintPair extends IWord {
   isTruePair: boolean;
   userAnswer: boolean;
 }
+
+export interface IAuth {
+  isAuthenticated: boolean;
+  userId: string;
+  token: string;
+}
+
+export interface IMiniGameStatistic {
+  newWords: number;
+  rightWords: number;
+  wrongWords: number;
+  longestSeries: number;
+  lastUpdate: string;
+}
+
+export interface IWordStatistic {
+  newWords: number;
+  rightWords: number;
+  wrongWords: number;
+  learnedWords: number;
+  lastUpdate: string;
+}
+
+export interface IUserStatistic {
+  learnedWords: number;
+  optional: {
+    sprintShortStat: IMiniGameStatistic;
+    audioCallShortStat: IMiniGameStatistic;
+    wordShortStat: IWordStatistic;
+  };
+}

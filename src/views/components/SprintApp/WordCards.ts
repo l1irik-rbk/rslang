@@ -73,13 +73,14 @@ export class WordCards {
 
     if (res) {
       this.rightAnswerQueue += 1;
+      this.parent.totalPoints += this.pointsPerAnswer;
+      this.totalPointsValueElem.innerText = this.parent.totalPoints.toString();
+      if (this.rightAnswerQueue > this.parent.rightAnswerQueueMax)
+        this.parent.rightAnswerQueueMax = this.rightAnswerQueue;
     } else {
       this.rightAnswerQueue = 0;
     }
     this.rightAnswerQueueValueElem.innerText = this.rightAnswerQueue.toString();
-
-    this.parent.totalPoints += this.pointsPerAnswer;
-    this.totalPointsValueElem.innerText = this.parent.totalPoints.toString();
 
     this.pointsPerAnswer = 10 * 2 ** Math.floor(this.rightAnswerQueue / 4);
     this.pointsPerAnswerValueElem.innerText = `+${this.pointsPerAnswer}`;

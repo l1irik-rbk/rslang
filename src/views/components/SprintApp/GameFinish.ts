@@ -1,8 +1,10 @@
 import { createDomNode } from '../../../helpers/utils';
 import { SprintApp } from './SprintApp';
 import { API_URL } from '../../../api/config';
-import { ISprintPair } from '../../../helpers/interfaces';
+import { ISprintPair, IUserStatistic } from '../../../helpers/interfaces';
 import { PlayIcon } from './PlayIcon';
+import { getUserStatistic, updateUserStatistic, createUserStatistic } from '../../../api/users.statistic.api';
+import { authState } from '../../pages/LogIn';
 
 export class GameFinish {
   onRestart: () => void;
@@ -18,6 +20,8 @@ export class GameFinish {
 
     this.addWordList(parent.container, trueAnswers, 'Знаю:');
     this.addWordList(parent.container, falseAnswers, 'Не знаю:');
+    if (authState.isAuthenticated)
+      this.saveStatistics(trueAnswers.length, falseAnswers.length, parent.rightAnswerQueueMax);
 
     const restartButton = createDomNode(parent.container, 'button', 'Restart', 'btn', 'btn-primary', 'mb-2', 'me-2');
     this.onRestart = () => null;
@@ -40,5 +44,30 @@ export class GameFinish {
       };
       createDomNode(row, 'span', ` ${item.word} - ${item.wordTranslate}`);
     });
+  }
+
+  async saveStatistics(rightWords: number, wrongWords: number, longestSeries: number) {
+    const res = await getUserStatistic(authState);
+    const now = new Date();
+    const date = `${now.getFullYear()}.${now.getMonth()}.${now.getDate()}`;
+
+    if (!res.message) {
+      const stat = res as IUserStatistic;
+      const sprintStat = stat.optional.sprintShortStat;
+      if (sprintStat.lastUpdate === date) {
+        sprintStat.newWords = 0;
+        sprintStat.rightWords += rightWords;
+        sprintStat.wrongWords += wrongWords;
+        sprintStat.longestSeries =
+          Number(sprintStat.longestSeries) >= longestSeries ? sprintStat.longestSeries : longestSeries;
+      } else {
+        sprintStat.lastUpdate = date;
+        sprintStat.newWords = 0;
+        sprintStat.rightWords = rightWords;
+        sprintStat.wrongWords = wrongWords;
+        sprintStat.longestSeries = longestSeries;
+      }
+      await updateUserStatistic(authState, stat);
+    }
   }
 }

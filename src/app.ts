@@ -25,6 +25,10 @@ export const routes: IRouter = {
   '/login': LogIn,
 };
 
+export const routerHistory = {
+  previousRoute: '',
+};
+
 // The router code. Takes a URL, checks against the list of supported routes and then renders the corresponding content page.
 export const router = async () => {
   // Lazy load view element:
@@ -46,6 +50,8 @@ export const router = async () => {
   // Parse the URL and if it has an id part, change it with the string ":id"
   const parsedURL = request.resource ? '/' + request.resource : '/';
   const page = routes[parsedURL] ? routes[parsedURL] : Error404;
+
+  if (parsedURL != '/register' && parsedURL != '/login') routerHistory.previousRoute = parsedURL;
 
   if (content) {
     content.innerHTML = await page.render();
