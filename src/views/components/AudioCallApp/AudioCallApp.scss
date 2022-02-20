@@ -1,0 +1,37 @@
+.audiocall {
+  img {
+    max-width: 100%;
+  }
+
+  &__word{
+    font-weight: 500;
+  }
+
+  &__text{
+    &_ru{
+      font-style: italic;
+      text-decoration: underline;
+      padding-left: 50px;
+    }
+  }
+
+  &__play{
+    padding: 0 10px 0 0;
+    & svg{
+      height: 20px;
+    }
+    &_big{
+      & svg{
+        height: 100px;
+      }
+    }
+  }
+
+  &_buttons{
+    margin: 20px 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}
