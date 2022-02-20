@@ -45,7 +45,7 @@ export class GameStart {
   }
 
   async createWordList() {
-    const PAGE_NUMBERS = 0;
+    const PAGE_NUMBERS = 29;
 
     const res =
       WordlistStore.startedFromBook && authState.isAuthenticated
