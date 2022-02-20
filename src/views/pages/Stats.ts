@@ -2,6 +2,7 @@ import { IComponent } from '../../helpers/interfaces';
 import { createDomNode } from '../../helpers/utils';
 import { ShortStats } from '../components/ShortStats/ShortStats';
 import { authState } from './LogIn';
+import WordlistStore from '../components/textbook/WordlistStore';
 
 const Stats: IComponent = {
   render: async () => {
@@ -30,6 +31,7 @@ const Stats: IComponent = {
       return;
     }
     ShortStats(container);
+    WordlistStore.startedFromBook = false;
   },
 };
 

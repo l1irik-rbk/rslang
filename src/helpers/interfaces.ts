@@ -35,6 +35,7 @@ export interface IWordlistStore {
   textbookPage: number;
   textbookGroup: number;
   isPlaying: HTMLAudioElement;
+  startedFromBook: boolean;
 }
 
 export interface IUserWord {
@@ -43,13 +44,13 @@ export interface IUserWord {
   word?: INewWord;
 }
 
-interface INewWord {
+export interface INewWord {
   difficulty: string;
   optional: IOptional;
 }
 
 interface IOptional {
-  [key: string]: boolean;
+  [key: string]: boolean | number;
 }
 
 export interface IGetUserWords extends IUserWord {
@@ -77,6 +78,7 @@ export interface IWord {
   audioMeaning: string;
   group: number;
   id: string;
+  _id?: string;
   image: string;
   page: number;
   textExample: string;
