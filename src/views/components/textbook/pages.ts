@@ -1,5 +1,6 @@
-import { ERROR_RATE, MAX_PAGE, MIN_PAGE } from '../../../helpers/constants';
+import { ERROR_RATE, MAX_GROUP, MAX_PAGE, MIN_PAGE } from '../../../helpers/constants';
 import { authState } from '../../pages/LogIn';
+import { checkUsedWords } from '../progress/checkProgress';
 import { checkPage } from './completePage';
 import { checkActiveBtns } from './diffStudyBtns';
 import { getSoundsBnts, stopSound } from './sounds';
@@ -12,8 +13,12 @@ export const showPrevPage = async (wordsContainer: HTMLElement, pageNumber: HTML
   pageNumber.innerHTML = `${WordlistStore.textbookPage + ERROR_RATE}`;
   getSoundsBnts();
   stopSound();
-  if (authState.isAuthenticated) await checkActiveBtns();
-  if (authState.isAuthenticated) await checkPage();
+
+  if (authState.isAuthenticated) {
+    await checkActiveBtns();
+    await checkPage();
+    await checkUsedWords();
+  }
 };
 
 export const showNextPage = async (wordsContainer: HTMLElement, pageNumber: HTMLButtonElement) => {
@@ -22,8 +27,12 @@ export const showNextPage = async (wordsContainer: HTMLElement, pageNumber: HTML
   pageNumber.innerHTML = `${WordlistStore.textbookPage + ERROR_RATE}`;
   getSoundsBnts();
   stopSound();
-  if (authState.isAuthenticated) await checkActiveBtns();
-  if (authState.isAuthenticated) await checkPage();
+
+  if (authState.isAuthenticated) {
+    await checkActiveBtns();
+    await checkPage();
+    await checkUsedWords();
+  }
 };
 
 export const updatePagesBtns = (
@@ -34,6 +43,7 @@ export const updatePagesBtns = (
   prevBtn.disabled = true;
   nextBtn.disabled = false;
   pageNumber.innerHTML = `${1}`;
+  WordlistStore.textbookGroup === MAX_GROUP ? (nextBtn.disabled = true) : (nextBtn.disabled = false);
 };
 
 export const activatePagesBtns = (nextBtn: HTMLButtonElement, prevBtn: HTMLButtonElement) => {

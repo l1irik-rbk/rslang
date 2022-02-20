@@ -13,7 +13,7 @@ export const setPageAndGroup = () => {
   );
 };
 
-export const getPageAndGroup = async () => {
+export const getPageAndGroup = () => {
   if (localStorage.getItem('textbookPage')) {
     wordlistStore.textbookPage = JSON.parse(localStorage.getItem('textbookPage') || '');
   }

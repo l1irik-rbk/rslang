@@ -1,3 +1,4 @@
+import WordlistStore from '../components/textbook/WordlistStore';
 import { IComponent } from './../../helpers/interfaces';
 
 const Home: IComponent = {
@@ -13,7 +14,9 @@ const Home: IComponent = {
         `;
     return view;
   },
-  after_render: async () => {},
+  after_render: async () => {
+    WordlistStore.startedFromBook = false;
+  },
 };
 
 export default Home;

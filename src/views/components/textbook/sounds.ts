@@ -20,7 +20,7 @@ export const playSound = async (index: number) => {
   const words: IWord[] | IAggregatedWord[] =
     WordlistStore.textbookGroup !== MAX_GROUP
       ? await getWords(WordlistStore.textbookGroup, WordlistStore.textbookPage)
-      : (await getAggregatedWords(authState.userId, WordlistStore.textbookPage))[0].paginatedResults;
+      : (await getAggregatedWords(authState.userId))[0].paginatedResults;
   const audioWordLink: string = words[index].audio;
   const audioMeaningLink: string = words[index].audioMeaning;
   const audioExampleLink: string = words[index].audioExample;

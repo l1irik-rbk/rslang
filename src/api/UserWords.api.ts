@@ -1,41 +1,43 @@
-import { IUserWord } from './../helpers/interfaces';
+import { IUserWord, INewWord } from './../helpers/interfaces';
 import { authState } from '../views/pages/LogIn';
 import { API_URL } from './config';
+import { getUserWord } from '../views/components/textbook/diffStudyBtns';
 
-export const createUserWord = async ({ id, wordId, word }: IUserWord, option: string, optionStatus: boolean) => {
-  const response = await fetch(`${API_URL}/users/${id}/words/${wordId}`, {
+export const createUserWord = async (userWord: IUserWord) => {
+  const response = await fetch(`${API_URL}/users/${userWord.id}/words/${userWord.wordId}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${authState.token}`,
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(word),
+    body: JSON.stringify(userWord.word),
   });
 
-  if (response.status === 417) return await updateUserWord({ id, wordId }, option, optionStatus);
+  if (response.status === 417) return await updateUserWord(userWord);
   const data = await response.json();
   return data;
 };
 
-export const updateUserWord = async ({ id, wordId }: IUserWord, option: string, optionStatus: boolean) => {
-  const word = await getUserWord(id, wordId);
-  word.optional[`${option}`] = optionStatus;
-  const updatedWord = { difficulty: word.difficulty, optional: word.optional };
-
-  if (!updatedWord.optional.isDiff && !updatedWord.optional.wasStudied) {
-    await deleteUserWord(id, wordId);
+export const updateUserWord = async (userWord: IUserWord) => {
+  if (
+    !(userWord.word as INewWord).optional.isDiff &&
+    !(userWord.word as INewWord).optional.wasStudied &&
+    (userWord.word as INewWord).optional.rightAnswers === 0 &&
+    (userWord.word as INewWord).optional.wrongAnswers === 0
+  ) {
+    await deleteUserWord(userWord.id, userWord.wordId);
     return;
   }
 
-  const response = await fetch(`${API_URL}/users/${id}/words/${wordId}`, {
+  const response = await fetch(`${API_URL}/users/${userWord.id}/words/${userWord.wordId}`, {
     method: 'PUT',
     headers: {
       Authorization: `Bearer ${authState.token}`,
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(updatedWord),
+    body: JSON.stringify(userWord.word),
   });
 
   const data = await response.json();
@@ -55,7 +57,7 @@ export const getUserWords = async (userId: string) => {
   return data;
 };
 
-export const getUserWord = async (userId: string, wordId: string) => {
+export const getUserWordAPI = async (userId: string, wordId: string) => {
   const response = await fetch(`${API_URL}/users/${userId}/words/${wordId}`, {
     method: 'GET',
     headers: {
@@ -63,6 +65,8 @@ export const getUserWord = async (userId: string, wordId: string) => {
       Accept: 'application/json',
     },
   });
+
+  if (response.status === 404) return await createUserWord(getUserWord(wordId));
 
   const data = await response.json();
   return data;

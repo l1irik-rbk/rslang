@@ -12,7 +12,6 @@ import Navbar from './views/components/Navbar';
 import Bottombar from './views/components/Bottombar';
 
 import Utils from './services/Utils';
-import { getPageAndGroup } from './views/components/textbook/savePages';
 
 // List of supported routes. Any url other than these routes will throw a 404 error
 export const routes: IRouter = {
@@ -23,6 +22,10 @@ export const routes: IRouter = {
   '/stats': Stats,
   '/register': Register,
   '/login': LogIn,
+};
+
+export const routerHistory = {
+  previousRoute: '',
 };
 
 // The router code. Takes a URL, checks against the list of supported routes and then renders the corresponding content page.
@@ -39,13 +42,15 @@ export const router = async () => {
     footer.innerHTML = await Bottombar.render();
     await Bottombar.after_render();
   }
-  await getPageAndGroup();
+
   // Get the parsed URl from the addressbar
   const request = Utils.parseRequestURL();
 
   // Parse the URL and if it has an id part, change it with the string ":id"
   const parsedURL = request.resource ? '/' + request.resource : '/';
   const page = routes[parsedURL] ? routes[parsedURL] : Error404;
+
+  if (parsedURL != '/register' && parsedURL != '/login') routerHistory.previousRoute = parsedURL;
 
   if (content) {
     content.innerHTML = await page.render();

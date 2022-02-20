@@ -1,5 +1,7 @@
 import { createDomNode } from '../../../helpers/utils';
+import { authState } from '../../pages/LogIn';
 import { SprintApp } from './SprintApp';
+import { addCorretAnswer } from '../textbook/learnedWords';
 
 export class WordCards {
   onComplete: () => void | undefined;
@@ -64,15 +66,21 @@ export class WordCards {
 
   checkAnswer(isTrue: boolean) {
     const res = isTrue === this.parent.wordList[this.currWordIndex].isTruePair;
+
+    if (authState.isAuthenticated) {
+      addCorretAnswer.call(this, res);
+    }
+
     if (res) {
       this.rightAnswerQueue += 1;
+      this.parent.totalPoints += this.pointsPerAnswer;
+      this.totalPointsValueElem.innerText = this.parent.totalPoints.toString();
+      if (this.rightAnswerQueue > this.parent.rightAnswerQueueMax)
+        this.parent.rightAnswerQueueMax = this.rightAnswerQueue;
     } else {
       this.rightAnswerQueue = 0;
     }
     this.rightAnswerQueueValueElem.innerText = this.rightAnswerQueue.toString();
-
-    this.parent.totalPoints += this.pointsPerAnswer;
-    this.totalPointsValueElem.innerText = this.parent.totalPoints.toString();
 
     this.pointsPerAnswer = 10 * 2 ** Math.floor(this.rightAnswerQueue / 4);
     this.pointsPerAnswerValueElem.innerText = `+${this.pointsPerAnswer}`;

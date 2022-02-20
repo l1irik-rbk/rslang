@@ -2,6 +2,7 @@ import { GameStart } from './GameStart';
 import { GameMain } from './GameMain';
 import { GameFinish } from './GameFinish';
 import { ISprintPair } from '../../../helpers/interfaces';
+import { ERROR_RATE } from '../../../helpers/constants';
 
 export class SprintApp {
   container: HTMLElement;
@@ -18,7 +19,7 @@ export class SprintApp {
     this.startedFromBook = startedFromBook;
     this.wordsGroup = wordsGroup;
     this.wordsPage = wordsPage;
-    this.level = 1;
+    this.level = 1 - ERROR_RATE;
     this.wordList = [];
     this.rightAnswerQueueMax = 0;
     this.totalPoints = 0;
