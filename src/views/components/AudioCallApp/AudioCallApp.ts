@@ -6,12 +6,14 @@ import './AudioCallApp.scss';
 
 export class AudioCallApp {
   container: HTMLElement;
+  startedFromBook: boolean;
   level: number;
   wordList: Array<IAudioCallList>;
   totalPoints: number;
 
-  constructor(container: HTMLElement) {
+  constructor(container: HTMLElement, startedFromBook: boolean) {
     this.container = container;
+    this.startedFromBook = startedFromBook;
     this.wordList = [];
     this.level = 0;
     this.totalPoints = 0;

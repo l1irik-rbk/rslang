@@ -14,6 +14,8 @@ const Stats: IComponent = {
   },
   after_render: async () => {
     const container = document.getElementById('stats-container');
+    WordlistStore.startedFromBook = false;
+
     if (!container) return;
     if (!authState.isAuthenticated) {
       createDomNode(container, 'h3', 'Краткосрочная статистика');
@@ -31,7 +33,6 @@ const Stats: IComponent = {
       return;
     }
     ShortStats(container);
-    WordlistStore.startedFromBook = false;
   },
 };
 

@@ -1,5 +1,6 @@
 import { IComponent } from '../../helpers/interfaces';
 import { AudioCallApp } from '../components/AudioCallApp/AudioCallApp';
+import WordlistStore from '../components/textbook/WordlistStore';
 
 const AudioCall: IComponent = {
   render: async () => {
@@ -12,7 +13,8 @@ const AudioCall: IComponent = {
   after_render: async () => {
     const container = document.getElementById('container');
     if (!container) return;
-    new AudioCallApp(container);
+    new AudioCallApp(container, WordlistStore.startedFromBook);
+    WordlistStore.startedFromBook = false;
   },
 };
 
