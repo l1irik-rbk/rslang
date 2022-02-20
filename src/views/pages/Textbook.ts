@@ -10,6 +10,7 @@ import { authState } from './LogIn';
 import { checkPage } from '../components/textbook/completePage';
 import { checkActiveBtns } from '../components/textbook/diffStudyBtns';
 import WordlistStore from '../components/textbook/WordlistStore';
+import { checkUsedWords } from '../components/progress/checkProgress';
 
 const Textbook: IComponent = {
   render: async () => {
@@ -36,7 +37,7 @@ const Textbook: IComponent = {
                   </ul>
                 </nav>
               </div>
-              <div id="words_container" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 card-group">
+              <div id="words_container" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 ${await renderWords(wordlistStore.textbookGroup, wordlistStore.textbookPage)}
               </div>
             </section>
@@ -53,8 +54,12 @@ const Textbook: IComponent = {
     const nextBtn = document.querySelector('.next-btn') as HTMLButtonElement;
     const pageNumber = document.querySelector('.page-btn') as HTMLButtonElement;
 
-    if (authState.isAuthenticated) await checkActiveBtns();
-    if (authState.isAuthenticated) await checkPage();
+    if (authState.isAuthenticated) {
+      await checkActiveBtns();
+      await checkPage();
+      await checkUsedWords();
+    }
+
     activatePagesBtns(nextBtn, prevBtn);
     getSoundsBnts();
 

@@ -1,5 +1,6 @@
 import { ERROR_RATE, MAX_GROUP, MAX_PAGE, MIN_PAGE } from '../../../helpers/constants';
 import { authState } from '../../pages/LogIn';
+import { checkUsedWords } from '../progress/checkProgress';
 import { checkPage } from './completePage';
 import { checkActiveBtns } from './diffStudyBtns';
 import { getSoundsBnts, stopSound } from './sounds';
@@ -16,6 +17,7 @@ export const showPrevPage = async (wordsContainer: HTMLElement, pageNumber: HTML
   if (authState.isAuthenticated) {
     await checkActiveBtns();
     await checkPage();
+    await checkUsedWords();
   }
 };
 
@@ -29,6 +31,7 @@ export const showNextPage = async (wordsContainer: HTMLElement, pageNumber: HTML
   if (authState.isAuthenticated) {
     await checkActiveBtns();
     await checkPage();
+    await checkUsedWords();
   }
 };
 

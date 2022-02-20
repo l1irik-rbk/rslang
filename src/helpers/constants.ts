@@ -25,6 +25,12 @@ export const firstPartID = {
   studyBtns: 'std',
 };
 
+export const typeOfAnswer = {
+  correctAnswers: 'rightAnswers',
+  wrongAnswers: 'wrongAnswers',
+  inARowAnswers: 'correctAnswersInARow',
+};
+
 export const ERROR_RATE = 1;
 export const MAX_GROUP = 6;
 export const MAX_PAGE = 29;

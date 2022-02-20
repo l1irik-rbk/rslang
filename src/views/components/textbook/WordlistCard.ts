@@ -6,6 +6,7 @@ import { authState } from '../../pages/LogIn';
 import { renderAuthBtns } from './authBtns';
 import WordlistStore from './WordlistStore';
 import { MAX_GROUP } from '../../../helpers/constants';
+import { renderMessage } from '../progress/renderProgress';
 
 export const renderWords = async (group: number, page: number) => {
   const words: IAggregatedWord[] =
@@ -18,7 +19,7 @@ export const renderWords = async (group: number, page: number) => {
 export const getWordCard = (word: IAggregatedWord) => {
   const id: string = WordlistStore.textbookGroup !== 6 ? word.id : word._id;
   const html = `
-    <div id="col-${id}" class="col card-wrapper border-danger">
+    <div id="col-${id}" class="col col-card card-wrapper border-danger card-group">
       <div class="card shadow-sm h-100">
         <img src="${API_URL}/${word.image}" alt="image" width="100%" height="240">
         <div class="card-body">
@@ -44,6 +45,9 @@ export const getWordCard = (word: IAggregatedWord) => {
             <li class="list-group-item">${word.textExample}</li>
             <li class="list-group-item">${word.textExampleTranslate}</li>
           </ul>
+          <div class="d-flex justify-content-between align-items-center word-progress" style="margin-bottom: 10px;">
+            ${authState.isAuthenticated ? renderMessage() : ''}
+          </div>
           <div class="d-flex justify-content-between align-items-center">
             ${authState.isAuthenticated ? renderAuthBtns(id) : ''}
           </div>
