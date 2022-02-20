@@ -4,6 +4,9 @@ import { LevelSelector } from './LevelSelector';
 import { getWords } from '../../../api/sprint.api';
 import { IWord } from '../../../helpers/interfaces';
 import { getArrayRandomInt } from './getRandomInt';
+import WordlistStore from '../textbook/WordlistStore';
+import { authState } from '../../pages/LogIn';
+import { getWordsWithoutStudied } from '../../../api/userAggregatedWords';
 
 export class GameStart {
   onMain: () => void;
@@ -42,12 +45,17 @@ export class GameStart {
   }
 
   async createWordList() {
-    const PAGE_NUMBERS = 29;
-    const res = await getWords(this.parent.level, Math.round(Math.random() * PAGE_NUMBERS));
+    const PAGE_NUMBERS = 0;
+
+    const res =
+      WordlistStore.startedFromBook && authState.isAuthenticated
+        ? await getWordsWithoutStudied(authState.userId, WordlistStore.textbookGroup, WordlistStore.textbookPage)
+        : await getWords(this.parent.level, Math.round(Math.random() * PAGE_NUMBERS));
+
     this.parent.wordList = res.map((item: IWord, index: number) => {
       return {
         ...item,
-        testAnswerList: getArrayRandomInt(5, 0, 20, index).map((elem) => res[elem].wordTranslate),
+        testAnswerList: getArrayRandomInt(5, 0, res.length, index).map((elem) => res[elem].wordTranslate),
       };
     });
   }

@@ -1,12 +1,12 @@
 import { createDomNode } from '../../../helpers/utils';
 import { AudioCallApp } from './AudioCallApp';
 import { CountDown } from './CountDown';
-import { WordCards } from './WordCards';
+import { WordCardsAudioCall } from './WordCards';
 
 export class GameMain {
   onFinish: () => void;
   countDown: CountDown;
-  wordCards: WordCards;
+  wordCards: WordCardsAudioCall;
 
   constructor(parent: AudioCallApp) {
     const GAME_DURATION_IN_SEC = 300;
@@ -15,7 +15,7 @@ export class GameMain {
 
     this.countDown = new CountDown(parent.container, GAME_DURATION_IN_SEC);
     this.countDown.onTime = () => this.onFinish();
-    this.wordCards = new WordCards(parent);
+    this.wordCards = new WordCardsAudioCall(parent);
     this.wordCards.onComplete = () => {
       this.countDown.destroy();
       this.onFinish();

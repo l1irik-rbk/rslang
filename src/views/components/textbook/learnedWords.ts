@@ -1,3 +1,4 @@
+import { WordCardsAudioCall } from './../AudioCallApp/WordCards';
 import { WordCards } from './../SprintApp/WordCards';
 import { INewWord, IGetUserWords, IUserWord } from './../../../helpers/interfaces';
 import { getUserWord } from './diffStudyBtns';
@@ -5,7 +6,7 @@ import { getUserWordAPI, updateUserWord } from '../../../api/UserWords.api';
 import { authState } from '../../pages/LogIn';
 import WordlistStore from './WordlistStore';
 
-export async function addCorretAnswer(this: WordCards, res: boolean) {
+export async function addCorretAnswer(this: WordCards | WordCardsAudioCall, res: boolean) {
   const wordID = !WordlistStore.startedFromBook
     ? this.parent.wordList[this.currWordIndex].id
     : (this.parent.wordList[this.currWordIndex]._id as string);
