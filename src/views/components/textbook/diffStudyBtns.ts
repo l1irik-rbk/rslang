@@ -44,7 +44,7 @@ export const addNewWord = async (e: Event, option: string) => {
   (updatedUserWord.word as INewWord).optional.rightAnswers = userWord.optional.rightAnswers;
   (updatedUserWord.word as INewWord).optional.wrongAnswers = userWord.optional.wrongAnswers;
   (updatedUserWord.word as INewWord).optional.correctAnswersInARow = userWord.optional.correctAnswersInARow;
-  console.log(userWord)
+
   deleteBtnsClasses(btnID, firstPart);
   await createUserWord(updatedUserWord);
   await checkPage();
