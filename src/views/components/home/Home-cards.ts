@@ -1,7 +1,4 @@
-import { textbookSvg } from './book-svg';
-import { gamesSvg } from './games-svg';
-import { statsSvg } from './stats-svg';
-import { teamSvg } from './team-svg';
+import { gamesSvg, statsSvg, teamSvg, textbookSvg } from './svgItems';
 
 export const getHomeCards = () => `
     <div class="col">
