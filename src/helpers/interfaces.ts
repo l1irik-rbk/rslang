@@ -121,3 +121,15 @@ export interface IUserStatistic {
     wordShortStat: IWordStatistic;
   };
 }
+
+export interface INavbar {
+  render(url: string | null): Promise<string>;
+  after_render(): Promise<void>;
+  setLoginState: () => void;
+  setLogoutState: () => void;
+}
+
+export interface IAudioCallList extends IWord {
+  testAnswerList: string[];
+  userAnswer: boolean;
+}
