@@ -37,16 +37,16 @@ export const router = async () => {
   const content = null || document.getElementById('page_container');
   const footer = null || document.getElementById('footer_container');
 
+  // Get the parsed URl from the addressbar
+  const request = Utils.parseRequestURL();
+
   // Render the Header and footer of the page\
   if (header && footer) {
-    header.innerHTML = await Navbar.render();
+    header.innerHTML = await Navbar.render(request.resource);
     await Navbar.after_render();
     footer.innerHTML = await Bottombar.render();
     await Bottombar.after_render();
   }
-
-  // Get the parsed URl from the addressbar
-  const request = Utils.parseRequestURL();
 
   // Parse the URL and if it has an id part, change it with the string ":id"
   const parsedURL = request.resource ? '/' + request.resource : '/';
