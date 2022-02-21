@@ -85,7 +85,7 @@ export class WordCards {
     this.pointsPerAnswer = 10 * 2 ** Math.floor(this.rightAnswerQueue / 4);
     this.pointsPerAnswerValueElem.innerText = `+${this.pointsPerAnswer}`;
 
-    this.parent.wordList[this.currWordIndex].userAnswer = res;
+    this.parent.wordList[this.currWordIndex].userAnswer = isTrue;
     this.currWordIndex += 1;
     this.start();
   }

@@ -3,7 +3,7 @@ import { SprintApp } from './SprintApp';
 import { API_URL } from '../../../api/config';
 import { ISprintPair, IUserStatistic } from '../../../helpers/interfaces';
 import { PlayIcon } from './PlayIcon';
-import { getUserStatistic, updateUserStatistic, createUserStatistic } from '../../../api/users.statistic.api';
+import { getUserStatistic, updateUserStatistic } from '../../../api/users.statistic.api';
 import { authState } from '../../pages/LogIn';
 
 export class GameFinish {
@@ -13,15 +13,21 @@ export class GameFinish {
   constructor(parent: SprintApp) {
     parent.container.innerHTML = '';
 
-    const trueAnswers = parent.wordList.filter((item) => item.userAnswer);
-    const falseAnswers = parent.wordList.filter((item) => !item.userAnswer);
+    createDomNode(parent.container, 'h1', `Спринт`);
 
-    createDomNode(parent.container, 'h3', `Результат игры: ${parent.totalPoints} очков`);
+    const trueAnswers = parent.wordList.filter((item) => item.userAnswer === item.isTruePair);
+    const falseAnswers = parent.wordList.filter((item) => !(item.userAnswer === item.isTruePair));
 
-    this.addWordList(parent.container, trueAnswers, 'Знаю:');
-    this.addWordList(parent.container, falseAnswers, 'Не знаю:');
-    if (authState.isAuthenticated)
-      this.saveStatistics(trueAnswers.length, falseAnswers.length, parent.rightAnswerQueueMax);
+    if (parent.wordList.length > 0) {
+      createDomNode(parent.container, 'h3', `Результат игры: ${parent.totalPoints} очков`);
+
+      this.addWordList(parent.container, trueAnswers, 'Знаю:');
+      this.addWordList(parent.container, falseAnswers, 'Не знаю:');
+      if (authState.isAuthenticated)
+        this.saveStatistics(trueAnswers.length, falseAnswers.length, parent.rightAnswerQueueMax);
+    } else {
+      createDomNode(parent.container, 'div', 'Слова для запуска игры отсутствуют', 'alert', 'alert-primary', 'mt-5');
+    }
 
     const restartButton = createDomNode(parent.container, 'button', 'Restart', 'btn', 'btn-primary', 'mb-2', 'me-2');
     this.onRestart = () => null;

@@ -13,6 +13,7 @@ export class GameMain {
     parent.container.innerHTML = '';
     this.onFinish = () => null;
 
+    createDomNode(parent.container, 'h1', `Спринт`);
     this.countDown = new CountDown(parent.container, GAME_DURATION_IN_SEC);
     this.countDown.onTime = () => this.onFinish();
     this.wordCards = new WordCards(parent);
