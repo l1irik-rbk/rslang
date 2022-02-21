@@ -6,7 +6,7 @@ import { getHomeCards } from '../components/Home/Home-cards';
 const Home: IComponent = {
   render: async () => {
     const view = `
-            <section class="section">
+            <section class="section home">
               <h1>RSLang</h1>
               <p class="home-text">Это приложение для изучения английского языка и увеличения словарного запаса в игровой форме!</p>
               <h2>Возможности и преимущества нашего приложения</h2>

@@ -1,15 +1,18 @@
 .benefits-inner {
   margin-bottom: 25px;
   
-  svg {
+  img {
     display: block;
-    width: 90px;
-    height: 90px;
-    margin: 10px auto;
+    object-fit: cover;
+    max-height: 250px;
   }
-
 }
 
 .home-text{
   font-size: 20px;
+  // margin-bottom: 100px;
 }
+
+// .home{
+//   background-image: url('../../../assets/demo.jpg');
+// }
