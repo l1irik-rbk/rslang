@@ -11,6 +11,8 @@ export class SprintApp {
   wordList: Array<ISprintPair>;
   rightAnswerQueueMax: number;
   totalPoints: number;
+  newWordsCounter: number;
+  learnedWordsCounter: number;
 
   constructor(container: HTMLElement, startedFromBook: boolean, wordsGroup: number, wordsPage: number) {
     this.container = container;
@@ -20,6 +22,8 @@ export class SprintApp {
     this.wordList = [];
     this.rightAnswerQueueMax = 0;
     this.totalPoints = 0;
+    this.newWordsCounter = 0;
+    this.learnedWordsCounter = 0;
 
     this.start();
   }

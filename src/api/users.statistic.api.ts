@@ -62,3 +62,23 @@ export const createUserStatistic = async (auth: IAuth) => {
   };
   updateUserStatistic(auth, userStatisticTemplate);
 };
+
+export const updateLearnedWords = async (auth: IAuth, learnedWords: number) => {
+  const res = await getUserStatistic(auth);
+  const now = new Date();
+  const date = `${now.getFullYear()}.${now.getMonth()}.${now.getDate()}`;
+
+  if (!res.message) {
+    const stat = res as IUserStatistic;
+    const wordStat = stat.optional.wordShortStat;
+
+    if (wordStat.lastUpdate === date) {
+      wordStat.learnedWords += learnedWords;
+    } else {
+      wordStat.lastUpdate = date;
+      wordStat.learnedWords = learnedWords;
+    }
+    if (wordStat.learnedWords < 0) wordStat.learnedWords = 0;
+    await updateUserStatistic(auth, stat);
+  }
+};

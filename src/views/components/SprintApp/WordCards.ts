@@ -46,8 +46,8 @@ export class WordCards {
     };
 
     const rightButton = createDomNode(card, 'Button', 'Верно', 'btn', 'btn-success', 'my-3');
-    rightButton.onclick = () => {
-      this.checkAnswer(true);
+    rightButton.onclick = async () => {
+      await this.checkAnswer(true);
     };
     document.onkeydown = (event) => {
       this.keyHandler(event);

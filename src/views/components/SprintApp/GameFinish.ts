@@ -24,7 +24,13 @@ export class GameFinish {
       this.addWordList(parent.container, trueAnswers, 'Знаю:');
       this.addWordList(parent.container, falseAnswers, 'Не знаю:');
       if (authState.isAuthenticated)
-        this.saveStatistics(trueAnswers.length, falseAnswers.length, parent.rightAnswerQueueMax);
+        this.saveStatistics(
+          trueAnswers.length,
+          falseAnswers.length,
+          parent.rightAnswerQueueMax,
+          parent.newWordsCounter,
+          parent.learnedWordsCounter
+        );
     } else {
       createDomNode(parent.container, 'div', 'Слова для запуска игры отсутствуют', 'alert', 'alert-primary', 'mt-5');
     }
@@ -52,7 +58,13 @@ export class GameFinish {
     });
   }
 
-  async saveStatistics(rightWords: number, wrongWords: number, longestSeries: number) {
+  async saveStatistics(
+    rightWords: number,
+    wrongWords: number,
+    longestSeries: number,
+    newWords: number,
+    learnedWords: number
+  ) {
     const res = await getUserStatistic(authState);
     const now = new Date();
     const date = `${now.getFullYear()}.${now.getMonth()}.${now.getDate()}`;
@@ -60,18 +72,25 @@ export class GameFinish {
     if (!res.message) {
       const stat = res as IUserStatistic;
       const sprintStat = stat.optional.sprintShortStat;
+      const wordStat = stat.optional.wordShortStat;
       if (sprintStat.lastUpdate === date) {
-        sprintStat.newWords = 0;
+        sprintStat.newWords += newWords;
         sprintStat.rightWords += rightWords;
         sprintStat.wrongWords += wrongWords;
         sprintStat.longestSeries =
           Number(sprintStat.longestSeries) >= longestSeries ? sprintStat.longestSeries : longestSeries;
       } else {
         sprintStat.lastUpdate = date;
-        sprintStat.newWords = 0;
+        sprintStat.newWords = newWords;
         sprintStat.rightWords = rightWords;
         sprintStat.wrongWords = wrongWords;
         sprintStat.longestSeries = longestSeries;
+      }
+
+      if (wordStat.lastUpdate === date) {
+        wordStat.learnedWords += learnedWords;
+      } else {
+        wordStat.learnedWords = learnedWords;
       }
       await updateUserStatistic(authState, stat);
     }

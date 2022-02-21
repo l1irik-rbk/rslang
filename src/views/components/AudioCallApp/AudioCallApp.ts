@@ -9,14 +9,20 @@ export class AudioCallApp {
   startedFromBook: boolean;
   level: number;
   wordList: Array<IAudioCallList>;
+  rightAnswerQueueMax: number;
   totalPoints: number;
+  newWordsCounter: number;
+  learnedWordsCounter: number;
 
   constructor(container: HTMLElement, startedFromBook: boolean) {
     this.container = container;
     this.startedFromBook = startedFromBook;
     this.wordList = [];
     this.level = 0;
+    this.rightAnswerQueueMax = 0;
     this.totalPoints = 0;
+    this.newWordsCounter = 0;
+    this.learnedWordsCounter = 0;
 
     this.start();
   }

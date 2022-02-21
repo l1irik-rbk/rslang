@@ -4,6 +4,7 @@ import { authState } from '../../pages/LogIn';
 import { IUserWord, IGetUserWords, INewWord } from './../../../helpers/interfaces';
 import { checkPage } from './completePage';
 import WordlistStore from './WordlistStore';
+import { updateLearnedWords } from '../../../api/users.statistic.api';
 
 export const getDifficultBtns = (difficultBtns: NodeListOf<HTMLButtonElement>) => {
   difficultBtns.forEach((btn) =>
@@ -41,6 +42,7 @@ export const addNewWord = async (e: Event, option: string) => {
 
   const userWord: IGetUserWords = await getUserWordAPI(authState.userId, btnID);
   const updatedUserWord = getUserWord(btnID, btnOption, true);
+  await updateLearnedWords(authState, 1);
   (updatedUserWord.word as INewWord).optional.rightAnswers = userWord.optional.rightAnswers;
   (updatedUserWord.word as INewWord).optional.wrongAnswers = userWord.optional.wrongAnswers;
   (updatedUserWord.word as INewWord).optional.correctAnswersInARow = userWord.optional.correctAnswersInARow;
@@ -57,7 +59,14 @@ export const getUserWord = (btnID: string, option = '', bool = false) => {
     wordId: btnID,
     word: {
       difficulty: 'word',
-      optional: { isDiff: false, wasStudied: false, rightAnswers: 0, wrongAnswers: 0, correctAnswersInARow: 0 },
+      optional: {
+        isDiff: false,
+        wasStudied: false,
+        rightAnswers: 0,
+        wrongAnswers: 0,
+        correctAnswersInARow: 0,
+        isNew: true,
+      },
     },
   };
 
@@ -76,6 +85,7 @@ const deleteWord = async (
   btn.classList.remove(...btnClasses);
   const userWord: IGetUserWords = await getUserWordAPI(authState.userId, btnID);
   const updatedUserWord = getUserWord(btnID, option, false);
+  await updateLearnedWords(authState, -1);
   (updatedUserWord.word as INewWord).optional.rightAnswers = userWord.optional.rightAnswers;
   (updatedUserWord.word as INewWord).optional.wrongAnswers = userWord.optional.wrongAnswers;
 
