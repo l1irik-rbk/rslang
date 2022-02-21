@@ -23,29 +23,30 @@ export class WordCards {
     const card = createDomNode(parent.container, 'div');
     this.onComplete = () => undefined;
 
-    const pointsContainer = createDomNode(card, 'h5', '', 'mb-4');
+    const pointsContainer = createDomNode(card, 'h5', '', 'mb-4', 'text-center');
     createDomNode(pointsContainer, 'span', 'Очки: ');
     this.totalPointsValueElem = createDomNode(pointsContainer, 'span', '0');
 
-    const rightAnswerQueueContainer = createDomNode(card, 'h6', '', 'mb-2');
+    const rightAnswerQueueContainer = createDomNode(card, 'h6', '', 'mb-2', 'text-center');
     createDomNode(rightAnswerQueueContainer, 'span', 'Кол-во правильных ответов подряд: ');
     this.rightAnswerQueueValueElem = createDomNode(rightAnswerQueueContainer, 'span', '0');
     this.rightAnswerQueue = 0;
 
-    const pointsPerAnswerContainer = createDomNode(card, 'h6', '', 'mb-3');
+    const pointsPerAnswerContainer = createDomNode(card, 'h6', '', 'mb-3', 'text-center');
     createDomNode(pointsPerAnswerContainer, 'span', 'Кол-во очков за правильный ответ: ');
     this.pointsPerAnswer = 10;
     this.pointsPerAnswerValueElem = createDomNode(pointsPerAnswerContainer, 'span', `+${this.pointsPerAnswer}`);
 
-    this.wordOnEng = createDomNode(card, 'h4');
-    this.wordOnRus = createDomNode(card, 'h5');
+    this.wordOnEng = createDomNode(card, 'h4', '', 'text-center');
+    this.wordOnRus = createDomNode(card, 'h5', '', 'text-center');
 
-    const wrongButton = createDomNode(card, 'Button', 'Неверно', 'btn', 'btn-danger', 'me-2', 'my-3');
+    const buttonContainer = createDomNode(card, 'div', '', 'd-flex', 'justify-content-center');
+    const wrongButton = createDomNode(buttonContainer, 'Button', 'Неверно', 'btn', 'btn-danger', 'me-2', 'my-3');
     wrongButton.onclick = () => {
       this.checkAnswer(false);
     };
 
-    const rightButton = createDomNode(card, 'Button', 'Верно', 'btn', 'btn-success', 'my-3');
+    const rightButton = createDomNode(buttonContainer, 'Button', 'Верно', 'btn', 'btn-success', 'my-3');
     rightButton.onclick = async () => {
       await this.checkAnswer(true);
     };

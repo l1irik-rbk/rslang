@@ -4,7 +4,6 @@ import { getUserStatistic } from '../../../api/users.statistic.api';
 
 export const ShortStats = async (container: HTMLElement) => {
   const shortStats = await getUserStatistic(authState);
-  console.log('getUserStatistic', shortStats);
 
   createDomNode(container, 'h1', 'Краткосрочная статистика');
 
@@ -13,7 +12,7 @@ export const ShortStats = async (container: HTMLElement) => {
     return;
   }
 
-  const sprintCard = createDomNode(container, 'div', '', 'card', 'mb-3');
+  const sprintCard = createDomNode(container, 'div', '', 'card', 'mb-3', 'text-dark', 'bg-light');
   const sprintCardBody = createDomNode(sprintCard, 'div', '', 'card-body');
   createDomNode(sprintCardBody, 'h5', 'Мини игра "Спринт"', 'card-title');
   const sprintStat = shortStats.optional.sprintShortStat;
@@ -24,7 +23,7 @@ export const ShortStats = async (container: HTMLElement) => {
   createDomNode(sprintCardBody, 'p', `Верные ответы: ${percentSprintRightWords}%`, 'card-text');
   createDomNode(sprintCardBody, 'p', `Серия верных ответов: ${sprintStat.longestSeries}`, 'card-text');
 
-  const audioCallCard = createDomNode(container, 'div', '', 'card', 'mb-3');
+  const audioCallCard = createDomNode(container, 'div', '', 'card', 'mb-3', 'text-dark', 'bg-light');
   const audioCallCardBody = createDomNode(audioCallCard, 'div', '', 'card-body');
   createDomNode(audioCallCardBody, 'h5', 'Мини игра "Аудиовызов"', 'card-title');
   const audioCallStat = shortStats.optional.audioCallShortStat;
@@ -35,7 +34,7 @@ export const ShortStats = async (container: HTMLElement) => {
   createDomNode(audioCallCardBody, 'p', `Верные ответы: ${percentAudioCallRightWords}%`, 'card-text');
   createDomNode(audioCallCardBody, 'p', `Серия верных ответов: ${audioCallStat.longestSeries}`, 'card-text');
 
-  const wordCard = createDomNode(container, 'div', '', 'card', 'mb-3');
+  const wordCard = createDomNode(container, 'div', '', 'card', 'mb-3', 'text-dark', 'bg-light');
   const wordCardBody = createDomNode(wordCard, 'div', '', 'card-body');
   createDomNode(wordCardBody, 'h5', 'Слова по всем играм', 'card-title');
   const wordStat = shortStats.optional.wordShortStat;

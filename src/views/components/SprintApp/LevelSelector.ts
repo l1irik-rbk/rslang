@@ -1,7 +1,7 @@
 import { createDomNode } from '../../../helpers/utils';
 export const LevelSelector = (container: HTMLElement) => {
   const elem = createDomNode(container, 'div');
-  createDomNode(elem, 'label', 'Уровень сложности', 'mb-1');
+  createDomNode(elem, 'label', 'Уровень сложности', 'mb-1', 'mt-3');
   const selector = createDomNode(elem, 'select', '', 'form-select', 'mb-3');
   selector.innerHTML = `
     <option value="0">1</option>

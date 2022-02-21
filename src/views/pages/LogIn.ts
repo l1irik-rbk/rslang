@@ -19,15 +19,19 @@ const authState = {
 const LogIn: IComponent = {
   render: async () => {
     const view = `
-            <section class="section">
-              <h1>Авторизация</h1>
-              ${Alert}
-              <form id="form">
-                ${EmailField}
-                ${PasswordField}
-                ${SubmitButton('Sign In')}
-                ${Link('register', 'Don`t have an account? Sign Up')}
-              </form>
+            <section class="section d-flex justify-content-center">
+            <div class="card text-dark bg-light" style="width: 60%;">
+              <div class="card-body" id="container">
+                <h1>Авторизация</h1>
+                ${Alert}
+                <form id="form">
+                  ${EmailField}
+                  ${PasswordField}
+                  ${SubmitButton('Войти')}
+                  ${Link('register', 'Нет аккаунта? Регистрируйся!')}
+                </form>
+              </div>
+            </div>
             </section>
           `;
     return view;

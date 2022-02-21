@@ -11,16 +11,20 @@ import WordlistStore from '../components/textbook/WordlistStore';
 const Register: IComponent = {
   render: async () => {
     const view = `
-            <section class="section">
-              <h1>Pегистрация</h1>
-              ${Alert}
-              <form id="form">
-                ${UserNameField}
-                ${EmailField}
-                ${PasswordField}
-                ${SubmitButton('Sign Up')}
-                ${Link('login', 'Do you have an account? Sign In')}
-              </form>
+            <section class="section d-flex justify-content-center">
+              <div class="card text-dark bg-light"  style="width: 60%;">
+                <div class="card-body" id="container">
+                  <h1>Pегистрация</h1>
+                  ${Alert}
+                  <form id="form">
+                    ${UserNameField}
+                    ${EmailField}
+                    ${PasswordField}
+                    ${SubmitButton('Регистрация')}
+                    ${Link('login', 'Есть аккаунт? Заходи!')}
+                  </form>
+                </div>
+              </div>
             </section>
           `;
     return view;

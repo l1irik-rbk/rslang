@@ -13,7 +13,7 @@ export class GameMain {
     parent.container.innerHTML = '';
     this.onFinish = () => null;
 
-    createDomNode(parent.container, 'h1', `Спринт`);
+    createDomNode(parent.container, 'h1', `Спринт`, 'text-center');
     this.countDown = new CountDown(parent.container, GAME_DURATION_IN_SEC);
     this.countDown.onTime = () => this.onFinish();
     this.wordCards = new WordCards(parent);
@@ -22,7 +22,8 @@ export class GameMain {
       this.onFinish();
     };
 
-    const finishButton = createDomNode(parent.container, 'button', 'Finish', 'btn', 'btn-primary');
+    const buttonContainer = createDomNode(parent.container, 'div', '', 'd-flex', 'justify-content-center');
+    const finishButton = createDomNode(buttonContainer, 'button', 'Завершить', 'btn', 'btn-outline-primary');
     finishButton.onclick = () => {
       this.countDown.destroy();
       this.onFinish();
