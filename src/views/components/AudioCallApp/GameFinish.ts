@@ -14,6 +14,8 @@ export class GameFinish {
   constructor(parent: AudioCallApp) {
     parent.container.innerHTML = '';
 
+    createDomNode(parent.container, 'h1', 'Аудиовызов');
+
     const trueAnswers = parent.wordList.filter((item) => item.userAnswer);
     const falseAnswers = parent.wordList.filter((item) => !item.userAnswer);
 
