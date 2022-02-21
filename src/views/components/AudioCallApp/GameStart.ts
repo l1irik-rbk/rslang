@@ -10,6 +10,7 @@ import { getWordsWithoutStudied } from '../../../api/userAggregatedWords';
 
 export class GameStart {
   onMain: () => void;
+  onEmpty: () => void;
   parent: AudioCallApp;
 
   constructor(parent: AudioCallApp) {
@@ -43,12 +44,17 @@ export class GameStart {
 
     const startButton = createDomNode(parent.container, 'button', 'Старт', 'btn', 'btn-primary') as HTMLButtonElement;
     this.onMain = () => null;
+    this.onEmpty = () => null;
     startButton.onclick = async () => {
       startButton.disabled = true;
       startButton.innerText = 'Загрузка...  ';
       createDomNode(startButton, 'span', '', 'spinner-border', 'spinner-border-sm');
-      await this.createWordList();
-      this.onMain();
+      const wordsCount = await this.createWordList();
+      if (wordsCount) {
+        this.onMain();
+      } else {
+        this.onEmpty();
+      }
     };
   }
 
@@ -66,6 +72,7 @@ export class GameStart {
       res = await getWords(this.parent.wordsGroup, Math.round(Math.random() * PAGE_NUMBERS));
     }
 
+    const wordNumbers = res.length;
     this.parent.wordList = res.map((item: IWord, index: number) => {
       return {
         ...item,
@@ -73,5 +80,6 @@ export class GameStart {
         userAnswer: false,
       };
     });
+    return wordNumbers;
   }
 }

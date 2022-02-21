@@ -29,7 +29,7 @@ export class AudioCallApp {
     this.start();
   }
 
-  private start() {
+  start() {
     const gameStart = new GameStart(this);
     gameStart.onMain = () => {
       const gameMain = new GameMain(this);
@@ -41,6 +41,15 @@ export class AudioCallApp {
         gameFinish.onBack = () => {
           history.back();
         };
+      };
+    };
+    gameStart.onEmpty = () => {
+      const gameFinish = new GameFinish(this);
+      gameFinish.onRestart = () => {
+        this.start();
+      };
+      gameFinish.onBack = () => {
+        history.back();
       };
     };
   }
