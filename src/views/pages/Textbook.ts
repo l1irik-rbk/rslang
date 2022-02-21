@@ -11,14 +11,15 @@ import { checkPage } from '../components/textbook/completePage';
 import { checkActiveBtns } from '../components/textbook/diffStudyBtns';
 import WordlistStore from '../components/textbook/WordlistStore';
 import { checkUsedWords } from '../components/progress/checkProgress';
+import '../components/textbook/Textbook.scss';
 
 const Textbook: IComponent = {
   render: async () => {
     const view = `
             <section class="section textbook-section">
-              <h1>Электронный учебник</h1>
-              <div class="d-flex justify-content-between">
-                <div id="btn_container" class="btn-container d-grid gap-2 d-md-block">
+              <h1>Учебник</h1>
+              <div class="d-flex justify-content-between navigation-btns">
+                <div id="btn_container" class="btn-container gap-2 d-md-block">
                   ${renderBtns(wordlistStore.textbookGroup)}
                 </div>
                 <nav id="nav_container" aria-label="Page navigation example">

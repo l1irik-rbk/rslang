@@ -45,11 +45,13 @@ export const getWordCard = (word: IAggregatedWord) => {
             <li class="list-group-item">${word.textExample}</li>
             <li class="list-group-item">${word.textExampleTranslate}</li>
           </ul>
-          <div class="d-flex justify-content-between align-items-center word-progress" style="margin-bottom: 10px;">
-            ${authState.isAuthenticated ? renderMessage() : ''}
-          </div>
-          <div class="d-flex justify-content-between align-items-center">
-            ${authState.isAuthenticated ? renderAuthBtns(id) : ''}
+          <div class="card-bottom">
+            <div class="d-flex justify-content-between align-items-center word-progress" style="margin-bottom: 10px;">
+              ${authState.isAuthenticated ? renderMessage() : ''}
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              ${authState.isAuthenticated ? renderAuthBtns(id) : ''}
+            </div>
           </div>
         </div>
       </div>
