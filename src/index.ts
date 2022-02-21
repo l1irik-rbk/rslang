@@ -1,5 +1,5 @@
-import { router } from './app';
 import './bootstrap/bootstrap.min.css';
+import { router } from './app';
 import { getPageAndGroup, setPageAndGroup } from './views/components/textbook/savePages';
 
 window.addEventListener('beforeunload', setPageAndGroup);
