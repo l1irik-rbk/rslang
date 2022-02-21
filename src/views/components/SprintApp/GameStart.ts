@@ -40,8 +40,9 @@ export class GameStart {
   async createWordList() {
     const PAGE_NUMBERS = 29;
     const TRUE_FRACTION = 0.4;
+
     const res =
-      WordlistStore.startedFromBook && authState.isAuthenticated
+      this.parent.startedFromBook && authState.isAuthenticated
         ? await getWordsWithoutStudied(authState.userId, WordlistStore.textbookGroup, WordlistStore.textbookPage)
         : await getWords(this.parent.level, Math.round(Math.random() * PAGE_NUMBERS));
 

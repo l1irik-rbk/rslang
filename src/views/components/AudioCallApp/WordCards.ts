@@ -2,8 +2,10 @@ import { createDomNode } from '../../../helpers/utils';
 import { AudioCallApp } from './AudioCallApp';
 import { VolumeIcon } from './VolumeIcon';
 import { API_URL } from '../../../api/config';
+import { authState } from '../../pages/LogIn';
+import { addCorretAnswer } from '../textbook/learnedWords';
 
-export class WordCards {
+export class WordCardsAudioCall {
   onComplete: () => void | undefined;
   parent: AudioCallApp;
   currWordIndex: number;
@@ -73,7 +75,7 @@ export class WordCards {
   start() {
     if (this.currWordIndex < this.wordListLength) {
       this.blockAnswer = false;
-      this.wordsNumber.innerHTML = `Слово: ${this.currWordIndex + 1}/20`;
+      this.wordsNumber.innerHTML = `Слово: ${this.currWordIndex + 1}/${this.parent.wordList.length}`;
       this.gameScore.innerHTML = `Очки: ${this.parent.totalPoints}/100`;
 
       this.buttonDontknow.classList.remove('d-none');
@@ -124,6 +126,10 @@ export class WordCards {
           this.buttonsAnswer[index - 1].classList.add('btn-danger');
           this.parent.wordList[this.currWordIndex].userAnswer = false;
         }
+      }
+
+      if (authState.isAuthenticated) {
+        addCorretAnswer.call(this, this.parent.wordList[this.currWordIndex].userAnswer);
       }
 
       this.buttonsAnswer[indexTrueWordRu].classList.remove('btn-outline-secondary');

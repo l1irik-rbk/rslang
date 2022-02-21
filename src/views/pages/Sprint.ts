@@ -17,6 +17,7 @@ const Sprint: IComponent = {
     const container = document.getElementById('container');
     if (!container) return;
     new SprintApp(container, WordlistStore.startedFromBook, wordsGroup, wordsPage);
+    WordlistStore.startedFromBook = false;
   },
 };
 
