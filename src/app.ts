@@ -7,9 +7,10 @@ import AudioCall from './views/pages/AudioCall';
 import Sprint from './views/pages/Sprint';
 import Stats from './views/pages/Stats';
 import Textbook from './views/pages/Textbook';
+import Team from './views/pages/Team';
 
-import Navbar from './views/components/Navbar';
-import Bottombar from './views/components/Bottombar';
+import Navbar from './views/components/Navbar/Navbar';
+import Bottombar from './views/components/Bottombar/Bottombar';
 
 import Utils from './services/Utils';
 
@@ -22,6 +23,7 @@ export const routes: IRouter = {
   '/stats': Stats,
   '/register': Register,
   '/login': LogIn,
+  '/team': Team,
 };
 
 export const routerHistory = {
@@ -35,22 +37,26 @@ export const router = async () => {
   const content = null || document.getElementById('page_container');
   const footer = null || document.getElementById('footer_container');
 
+  // Get the parsed URl from the addressbar
+  const request = Utils.parseRequestURL();
+
   // Render the Header and footer of the page\
   if (header && footer) {
-    header.innerHTML = await Navbar.render();
+    header.innerHTML = await Navbar.render(request.resource);
     await Navbar.after_render();
     footer.innerHTML = await Bottombar.render();
     await Bottombar.after_render();
   }
-
-  // Get the parsed URl from the addressbar
-  const request = Utils.parseRequestURL();
 
   // Parse the URL and if it has an id part, change it with the string ":id"
   const parsedURL = request.resource ? '/' + request.resource : '/';
   const page = routes[parsedURL] ? routes[parsedURL] : Error404;
 
   if (parsedURL != '/register' && parsedURL != '/login') routerHistory.previousRoute = parsedURL;
+
+  if (footer && (parsedURL === '/sprint' || parsedURL === '/audiocall')) {
+    footer.innerHTML = '';
+  }
 
   if (content) {
     content.innerHTML = await page.render();

@@ -1,6 +1,6 @@
 import { GameStart } from './GameStart';
 import { GameMain } from './GameMain';
-import { IAudioCallList } from './IAudioCallList';
+import { IAudioCallList } from './../../../helpers/interfaces';
 import { GameFinish } from './GameFinish';
 import './AudioCallApp.scss';
 

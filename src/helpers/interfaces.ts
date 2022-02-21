@@ -11,11 +11,6 @@ export interface IRouter {
   [key: string]: IComponent;
 }
 
-export interface INavbar extends IComponent {
-  setLoginState: () => void;
-  setLogoutState: () => void;
-}
-
 export interface IUser {
   name: string;
   email: string;
@@ -125,4 +120,16 @@ export interface IUserStatistic {
     audioCallShortStat: IMiniGameStatistic;
     wordShortStat: IWordStatistic;
   };
+}
+
+export interface INavbar {
+  render(url: string | null): Promise<string>;
+  after_render(): Promise<void>;
+  setLoginState: () => void;
+  setLogoutState: () => void;
+}
+
+export interface IAudioCallList extends IWord {
+  testAnswerList: string[];
+  userAnswer: boolean;
 }

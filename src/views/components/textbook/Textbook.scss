@@ -1,0 +1,20 @@
+.textbook-section {
+  .navigation-btns {
+    margin-bottom: 10px;
+
+    #btn_container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  #words_container {
+    margin-bottom: 25px;
+  }
+
+  .card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
