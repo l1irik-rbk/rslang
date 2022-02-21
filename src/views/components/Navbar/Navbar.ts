@@ -10,8 +10,13 @@ const Navbar: INavbar = {
     const links = [
       { url: '', href: '/#', class: 'nav-link px-2 text-white home-link', content: homeSvg },
       { url: 'textbook', href: '/#/textbook', class: 'nav-link px-2 text-white', content: 'Учебник' },
-      { url: 'audiocall', href: '/#/audiocall', class: 'nav-link px-2 text-white', content: 'Аудиовызов' },
-      { url: 'sprint', href: '/#/sprint', class: 'nav-link px-2 text-white', content: 'Спринт' },
+      {
+        url: 'audiocall',
+        href: '/#/audiocall',
+        class: 'nav-link px-2 text-white audiocall-link',
+        content: 'Аудиовызов',
+      },
+      { url: 'sprint', href: '/#/sprint', class: 'nav-link px-2 text-white sprint-link', content: 'Спринт' },
       { url: 'stats', href: '/#/stats', class: 'nav-link px-2 text-white', content: 'Статистика' },
     ];
     let view = `
