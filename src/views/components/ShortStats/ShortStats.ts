@@ -39,7 +39,7 @@ export const ShortStats = async (container: HTMLElement) => {
   const wordCardBody = createDomNode(wordCard, 'div', '', 'card-body');
   createDomNode(wordCardBody, 'h5', 'Слова по всем играм', 'card-title');
   const wordStat = shortStats.optional.wordShortStat;
-  createDomNode(wordCardBody, 'p', `Новых слов за день: ${wordStat.newWords}`, 'card-text');
+  createDomNode(wordCardBody, 'p', `Новых слов за день: ${audioCallStat.newWords + sprintStat.newWords}`, 'card-text');
   const totalRightWord = sprintStat.rightWords + audioCallStat.rightWords;
   const totalWords = totalSprintAnswers + totalAudioCallAnswers;
   let percentWordRightWords = Math.round((100 * totalRightWord) / totalWords);

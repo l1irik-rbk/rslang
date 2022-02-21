@@ -25,10 +25,12 @@ export class WordCardsAudioCall {
   cardImg: HTMLElement;
   cardText: HTMLElement;
   blockAnswer: boolean;
+  rightAnswerQueue: number;
 
   constructor(parent: AudioCallApp) {
     this.parent = parent;
     this.blockAnswer = false;
+    this.rightAnswerQueue = 0;
     this.currWordIndex = 0;
     this.buttonsAnswer = [];
     this.wordListLength = parent.wordList.length;
@@ -121,10 +123,14 @@ export class WordCardsAudioCall {
         if (index - 1 === indexTrueWordRu) {
           this.parent.totalPoints += 5;
           this.parent.wordList[this.currWordIndex].userAnswer = true;
+          this.rightAnswerQueue += 1;
+          if (this.rightAnswerQueue > this.parent.rightAnswerQueueMax)
+            this.parent.rightAnswerQueueMax = this.rightAnswerQueue;
         } else {
           this.buttonsAnswer[index - 1].classList.remove('btn-outline-secondary');
           this.buttonsAnswer[index - 1].classList.add('btn-danger');
           this.parent.wordList[this.currWordIndex].userAnswer = false;
+          this.rightAnswerQueue = 0;
         }
       }
 
