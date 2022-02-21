@@ -1,7 +1,7 @@
 import WordlistStore from '../components/textbook/WordlistStore';
 import { IComponent } from './../../helpers/interfaces';
 import '../components/Home/Home.scss';
-import { getHomeCards } from '../components/Home/Home-cards';
+import { getHomeCards } from '../components/home/Home-cards';
 
 const Home: IComponent = {
   render: async () => {
