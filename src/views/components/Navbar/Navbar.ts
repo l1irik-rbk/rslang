@@ -1,5 +1,5 @@
 import { authState } from '../../pages/LogIn';
-import { INavbar } from './INavbar';
+import { INavbar } from './../../../helpers/interfaces';
 import { homeSvg } from './home-svg';
 import './Navbar.scss';
 
