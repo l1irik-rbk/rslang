@@ -1,32 +1,25 @@
 import { GameStart } from './GameStart';
 import { GameMain } from './GameMain';
+import { IAudioCallList } from './IAudioCallList';
 import { GameFinish } from './GameFinish';
-import { ISprintPair } from '../../../helpers/interfaces';
-import { ERROR_RATE } from '../../../helpers/constants';
+import './AudioCallApp.scss';
 
-export class SprintApp {
+export class AudioCallApp {
   container: HTMLElement;
-  startedFromBook: boolean;
-  wordsGroup: number;
-  wordsPage: number;
   level: number;
-  wordList: Array<ISprintPair>;
-  rightAnswerQueueMax: number;
+  wordList: Array<IAudioCallList>;
   totalPoints: number;
 
-  constructor(container: HTMLElement, startedFromBook: boolean, wordsGroup: number, wordsPage: number) {
+  constructor(container: HTMLElement) {
     this.container = container;
-    this.startedFromBook = startedFromBook;
-    this.wordsGroup = wordsGroup;
-    this.wordsPage = wordsPage;
-    this.level = 0;
     this.wordList = [];
-    this.rightAnswerQueueMax = 0;
+    this.level = 0;
     this.totalPoints = 0;
 
     this.start();
   }
-  start() {
+
+  private start() {
     const gameStart = new GameStart(this);
     gameStart.onMain = () => {
       const gameMain = new GameMain(this);

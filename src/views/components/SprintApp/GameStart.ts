@@ -6,6 +6,7 @@ import { IWord } from '../../../helpers/interfaces';
 import { authState } from '../../pages/LogIn';
 import WordlistStore from '../../components/textbook/WordlistStore';
 import { getWordsWithoutStudied } from '../../../api/userAggregatedWords';
+import { ERROR_RATE } from '../../../helpers/constants';
 
 export class GameStart {
   onMain: () => void;
@@ -23,7 +24,6 @@ export class GameStart {
     const levelSelector = LevelSelector(parent.container);
     levelSelector.onchange = (e) => {
       parent.level = Number((e.target as HTMLInputElement).value);
-      console.log(parent.level);
     };
 
     const startButton = createDomNode(parent.container, 'button', 'Start', 'btn', 'btn-primary') as HTMLButtonElement;
@@ -40,9 +40,11 @@ export class GameStart {
   async createWordList() {
     const PAGE_NUMBERS = 29;
     const TRUE_FRACTION = 0.4;
-    const res = !WordlistStore.startedFromBook
-      ? await getWords(this.parent.level, Math.round(Math.random() * PAGE_NUMBERS))
-      : await getWordsWithoutStudied(authState.userId, this.parent.level, WordlistStore.textbookPage);
+    const res =
+      WordlistStore.startedFromBook && authState.isAuthenticated
+        ? await getWordsWithoutStudied(authState.userId, WordlistStore.textbookGroup, WordlistStore.textbookPage)
+        : await getWords(this.parent.level, Math.round(Math.random() * PAGE_NUMBERS));
+
     const wordNumbers = res.length;
     this.parent.wordList = res.map((item: IWord) => {
       if (Math.random() <= TRUE_FRACTION) {
