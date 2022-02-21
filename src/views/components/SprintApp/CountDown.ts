@@ -6,7 +6,7 @@ export class CountDown {
   onTime: () => void;
 
   constructor(container: HTMLElement, duration: number) {
-    this.timeView = createDomNode(container, 'h5', `Время: ${duration}`);
+    this.timeView = createDomNode(container, 'h5', `Время: ${duration}`, 'text-center');
     this.duration = duration;
     this.onTime = () => undefined;
   }

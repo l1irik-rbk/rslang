@@ -13,7 +13,7 @@ export class GameFinish {
   constructor(parent: SprintApp) {
     parent.container.innerHTML = '';
 
-    createDomNode(parent.container, 'h1', `Спринт`);
+    createDomNode(parent.container, 'h1', `Спринт`, 'text-center');
 
     const trueAnswers = parent.wordList.filter((item) => item.userAnswer === item.isTruePair);
     const falseAnswers = parent.wordList.filter((item) => !(item.userAnswer === item.isTruePair));
@@ -35,11 +35,19 @@ export class GameFinish {
       createDomNode(parent.container, 'div', 'Слова для запуска игры отсутствуют', 'alert', 'alert-primary', 'mt-5');
     }
 
-    const restartButton = createDomNode(parent.container, 'button', 'Restart', 'btn', 'btn-primary', 'mb-2', 'me-2');
+    const restartButton = createDomNode(
+      parent.container,
+      'button',
+      'Начать заново',
+      'btn',
+      'btn-primary',
+      'mb-2',
+      'me-2'
+    );
     this.onRestart = () => null;
     restartButton.onclick = () => this.onRestart();
 
-    const backButton = createDomNode(parent.container, 'button', 'Back', 'btn', 'btn-primary', 'mb-2');
+    const backButton = createDomNode(parent.container, 'button', 'Назад', 'btn', 'btn-primary', 'mb-2');
     this.onBack = () => null;
     backButton.onclick = () => this.onBack();
   }

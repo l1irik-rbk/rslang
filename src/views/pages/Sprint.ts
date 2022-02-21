@@ -5,7 +5,11 @@ import WordlistStore from '../components/textbook/WordlistStore';
 const Sprint: IComponent = {
   render: async () => {
     const view = `
-            <section class="section" id="container">
+            <section class="section  d-flex justify-content-center">
+              <div class="card text-dark bg-light" style="width: 60%;">
+                <div class="card-body" id="container">
+                </div>
+              </div>
             </section>
           `;
     return view;

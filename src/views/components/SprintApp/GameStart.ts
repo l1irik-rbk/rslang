@@ -16,9 +16,14 @@ export class GameStart {
     parent.container.innerHTML = '';
     parent.totalPoints = 0;
 
-    createDomNode(parent.container, 'h1', `Спринт`);
-    createDomNode(parent.container, 'h6', '«Спринт» - это тренировка для повторения заученных слов из вашего словаря.');
-    createDomNode(parent.container, 'p', 'Используйте мышь или клавиши влево/вправо для выбора');
+    createDomNode(parent.container, 'h1', `Спринт`, 'text-center');
+    createDomNode(
+      parent.container,
+      'h6',
+      '«Спринт» - это тренировка для повторения заученных слов из вашего словаря.',
+      'text-center'
+    );
+    createDomNode(parent.container, 'p', 'Используйте мышь или клавиши влево/вправо для выбора', 'text-center', 'mt-3');
 
     if (!parent.startedFromBook) {
       const levelSelector = LevelSelector(parent.container);
@@ -35,12 +40,12 @@ export class GameStart {
       );
     }
 
-    const startButton = createDomNode(parent.container, 'button', 'Start', 'btn', 'btn-primary') as HTMLButtonElement;
+    const startButton = createDomNode(parent.container, 'button', 'Начать', 'btn', 'btn-primary') as HTMLButtonElement;
     this.onMain = () => null;
     this.onEmpty = () => null;
     startButton.onclick = async () => {
       startButton.disabled = true;
-      startButton.innerText = 'Loading...  ';
+      startButton.innerText = 'Загрузка...  ';
       createDomNode(startButton, 'span', '', 'spinner-border', 'spinner-border-sm');
       const wordsCount = await this.createWordList();
       if (wordsCount) {

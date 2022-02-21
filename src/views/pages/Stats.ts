@@ -23,7 +23,7 @@ const Stats: IComponent = {
       const signInLink = createDomNode(
         container,
         'a',
-        'Sign In',
+        'Войти',
         'link-primary',
         'd-flex',
         'mt-3',
