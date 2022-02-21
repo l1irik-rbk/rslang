@@ -5,7 +5,7 @@ import { EmailField } from '../components/auth/EmailField';
 import { PasswordField } from '../components/auth/PasswordField';
 import { SubmitButton } from '../components/auth/SubmitButton';
 import { Link } from '../components/auth/Link';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/Navbar/Navbar';
 import { routerHistory } from '../../app';
 import { createUserStatistic, getUserStatistic } from '../../api/users.statistic.api';
 import WordlistStore from '../components/textbook/WordlistStore';

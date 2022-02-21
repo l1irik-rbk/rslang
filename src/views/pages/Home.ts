@@ -1,15 +1,18 @@
 import WordlistStore from '../components/textbook/WordlistStore';
 import { IComponent } from './../../helpers/interfaces';
+import '../components/home/Home.scss';
+import { getHomeCards } from '../components/home/Home-cards';
 
 const Home: IComponent = {
   render: async () => {
     const view = `
             <section class="section">
-                <h1>Home</h1>
-                <ul>
-                <li>описание возможностей и преимуществ приложения</li>
-                <li>раздел "О команде" с фото или аватарками и ссылками на гитхабы всех участников команды, описанием вклада в разработку приложения каждого из них. При желании данный раздел можно вынести в отдельную страницу</li>
-                </ul>
+              <h1>RSLang</h1>
+              <p class="home-text">Это приложение для изучения английского языка и увеличения словарного запаса в игровой форме!</p>
+              <h2>Возможности и преимущества нашего приложения</h2>
+              <div class="row row-cols-1 row-cols-md-2 g-4 benefits-inner">
+                ${getHomeCards()}
+              </div>
             </section>
         `;
     return view;
