@@ -1,5 +1,5 @@
 import { authState } from '../../pages/LogIn';
-import { INavbar } from './INavbar';
+import { INavbar } from './../../../helpers/interfaces';
 import { homeSvg } from './home-svg';
 import './Navbar.scss';
 
@@ -7,7 +7,6 @@ let loginStateElement: null | HTMLElement;
 
 const Navbar: INavbar = {
   render: async (url) => {
-    console.log(url);
     const links = [
       { url: '', href: '/#', class: 'nav-link px-2 text-white home-link', content: homeSvg },
       { url: 'textbook', href: '/#/textbook', class: 'nav-link px-2 text-white', content: 'Учебник' },

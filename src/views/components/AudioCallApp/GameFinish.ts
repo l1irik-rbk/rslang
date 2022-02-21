@@ -1,7 +1,7 @@
 import { createDomNode } from '../../../helpers/utils';
 import { AudioCallApp } from './AudioCallApp';
 import { API_URL } from '../../../api/config';
-import { IAudioCallList } from './IAudioCallList';
+import { IAudioCallList } from './../../../helpers/interfaces';
 import { PlayIcon } from './PlayIcon';
 
 export class GameFinish {
