@@ -7,18 +7,20 @@ import './AudioCallApp.scss';
 export class AudioCallApp {
   container: HTMLElement;
   startedFromBook: boolean;
-  level: number;
+  wordsGroup: number;
   wordList: Array<IAudioCallList>;
   rightAnswerQueueMax: number;
   totalPoints: number;
   newWordsCounter: number;
   learnedWordsCounter: number;
+  wordsPage: number;
 
-  constructor(container: HTMLElement, startedFromBook: boolean) {
+  constructor(container: HTMLElement, startedFromBook: boolean, wordsGroup: number, wordsPage: number) {
     this.container = container;
     this.startedFromBook = startedFromBook;
     this.wordList = [];
-    this.level = 0;
+    this.wordsGroup = wordsGroup;
+    this.wordsPage = wordsPage;
     this.rightAnswerQueueMax = 0;
     this.totalPoints = 0;
     this.newWordsCounter = 0;
