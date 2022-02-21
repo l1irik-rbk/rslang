@@ -35,7 +35,7 @@ const Team: IComponent = {
                       <small class="text-muted">Разработчик</small>
                       <ol>
                         <li>Авторизация</li>
-                        <li>Мини-игра "Аудиовызов"</li>
+                        <li>Мини-игра "Спринт"</li>
                         <li>Страница статистики</li>
                       </ol>
                     </div>
@@ -49,7 +49,7 @@ const Team: IComponent = {
                       <a href="https://github.com/KusakinVova">KusakinVova<span>${githubSvg}</span></a>
                       <small class="text-muted">Разработчик</small>
                       <ol>
-                        <li>Мини-игра "Спринт"</li>
+                        <li>Мини-игра "Аудиовызов"</li>
                         <li>Развертка базы данных и деплой бекенда</li>
                         <li>Настройка SASS</li>
                       </ol>

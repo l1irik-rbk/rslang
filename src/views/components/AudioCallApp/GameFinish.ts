@@ -1,7 +1,7 @@
 import { createDomNode } from '../../../helpers/utils';
 import { AudioCallApp } from './AudioCallApp';
 import { API_URL } from '../../../api/config';
-import { IAudioCallList } from './IAudioCallList';
+import { IAudioCallList } from '../../../helpers/interfaces';
 import { IUserStatistic } from '../../../helpers/interfaces';
 import { PlayIcon } from './PlayIcon';
 import { getUserStatistic, updateUserStatistic } from '../../../api/users.statistic.api';
@@ -13,6 +13,8 @@ export class GameFinish {
 
   constructor(parent: AudioCallApp) {
     parent.container.innerHTML = '';
+
+    createDomNode(parent.container, 'h1', 'Аудиовызов');
 
     const trueAnswers = parent.wordList.filter((item) => item.userAnswer);
     const falseAnswers = parent.wordList.filter((item) => !item.userAnswer);

@@ -13,7 +13,7 @@ const AudioCall: IComponent = {
   after_render: async () => {
     const container = document.getElementById('container');
     if (!container) return;
-    new AudioCallApp(container, WordlistStore.startedFromBook);
+    new AudioCallApp(container, WordlistStore.startedFromBook, WordlistStore.textbookGroup, WordlistStore.textbookPage);
     WordlistStore.startedFromBook = false;
   },
 };
