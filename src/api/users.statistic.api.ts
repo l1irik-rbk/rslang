@@ -10,7 +10,6 @@ export const getUserStatistic = async (auth: IAuth) => {
   });
   if (response.ok) {
     const data = await response.json();
-    console.log(data);
     return { learnedWords: data.learnedWords, optional: data.optional };
   }
   if (response.status === 401) return { message: 'Ошибка авторизации' };

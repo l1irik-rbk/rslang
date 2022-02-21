@@ -4,7 +4,6 @@ import { getUserStatistic } from '../../../api/users.statistic.api';
 
 export const ShortStats = async (container: HTMLElement) => {
   const shortStats = await getUserStatistic(authState);
-  console.log('getUserStatistic', shortStats);
 
   createDomNode(container, 'h1', 'Краткосрочная статистика');
 
